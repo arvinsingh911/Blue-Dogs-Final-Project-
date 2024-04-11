@@ -1,4 +1,6 @@
 import pandas as pd
+import argparse
+import sys
 
 #function takes in data & tells user the weather
 df_filepath = "C:/Users/Maryl/OneDrive - University of Maryland/INST326/Blue-Dogs-Final-Project-/WeatherDataSet.csv"
@@ -29,6 +31,34 @@ def date_weather(filepath):
     return weather
      
     #weather_column = dataset_weather.loc[:"Weather"]
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Smart outfit planner")
+    
+    # The command line arguments 
+    # User will enter name, age(int), weather, occasion
+    parser.add_argument("name",type = str, help = "The name of the user")
+    parser.add_argument("age",type = int, help = "The age of the user")
+    parser.add_argument("weather",type = str, help = "The current weather \
+        conditions")
+    parser.add_argument("occasion",type = str, help = "Occasion for the outfit")
+    
+    if not args.name:
+        raise ValueError('Name is required.')
+    
+    if args.age is not None and args.age <= 0:
+        raise ValueError('Age must be a positive integer.')
+    
+    return {
+        'name': args.name,
+        'age': args.age,
+        'weather': args.weather,
+        'occasion': args.occasion
+    }
+    
+if __name__ == "__main__":
+    args = parse_args(sys.argv[1:])
 
 
 
