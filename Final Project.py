@@ -1,12 +1,12 @@
 import pandas as pd
 
 #function takes in data & tells user the weather
-df_filepath = "C:/Users/Maryl/Downloads/WeatherDataSet.csv"
+df_filepath = "C:/Users/Maryl/OneDrive - University of Maryland/INST326/Blue-Dogs-Final-Project-/WeatherDataSet.csv"
 #pd.read_csv(data_filepath)
 
 
 def date_weather(filepath):
-    user_input = input("Input the date as M/D/YYYY, ie 4/1/2024")
+    user_input = input("Input the date as M/D/YYYY, ie. 4/1/2024")
     try:
         pd.to_datetime(user_input, dayfirst = True, errors = 'raise')    
     except ValueError:
@@ -15,7 +15,7 @@ def date_weather(filepath):
     df = pd.read_csv(filepath) #loads the dataframe
     #date_column = df.loc[:"Date"] #acesses the data in the date column
     
-    df_date = df.loc[df["Date"]==user_input] #filetrs just the row of data where the user_input = date
+    df_date = df.loc[df["Date"]==user_input] #filers just the row of data where the user_input = date
     if df_date.isin([user_input]):#get this checked
         weather = df_date.loc[0] #get this checked
         #add a conidtion, if ture extract the weather from the row, else send a message
@@ -28,16 +28,8 @@ def date_weather(filepath):
     
     return weather
      
+    #weather_column = dataset_weather.loc[:"Weather"]
 
-
-
-    weather_column = dataset_weather.loc[:"Weather"]
-
-    
-
-
-    #acess the colunm weateher, assocaited to the date
-    #then return that weather
 
 
  
