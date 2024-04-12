@@ -107,14 +107,8 @@ class Outfit():
             
   
 #testing  
-# if args.num_accessories != 0:
-#     for i in range (args.num_accessories):
-#         myoutfit.addAccessory(random.choice(Accessorieslist))#random element of the dictionary)
-# else:
-#     myoutfit.addAccessory()
-        
-
-        
-#digusting_function arg1 arg2 arg3 arg4
-#addargument(arg4)
-#addargument()
+myoutfit = Outfit()
+myoutfit.addAcessories("Sunglasses","Ear-Rings", "Chain")
+print(myoutfit.sortAccessories())
+print(myoutfit.accessories)
+ 
