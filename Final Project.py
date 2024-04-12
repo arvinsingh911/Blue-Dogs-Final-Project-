@@ -34,6 +34,28 @@ def date_weather(filepath):
 
 
 def parse_args():
+    """
+        Parses command-line arguments Smart Outfit Planner.
+
+    This function uses ArgumentParser to parse command-line arguments \
+        provided by the user.
+    The arguments include:
+    name: User's name (required)
+    age: User's age (optional, must be a positive integer)
+    weather: Weather conditions (optional)
+    occasion: Occasion for the outfit (optional)
+
+    Returns:
+        dict: A dictionary containing the parsed arguments.
+            name: User's name (str)
+            age: User's age (int)
+            weather: Weather conditions (str or None)
+            occasion: Occasion for the outfit (str or None)
+
+    Raises:
+        ValueError: If required arguments are missing or if age is \
+            not a positive integer.
+    """
     parser = argparse.ArgumentParser(description="Smart outfit planner")
     
     # The command line arguments 
