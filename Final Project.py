@@ -61,5 +61,30 @@ if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
 
 
-
+class Outfit():
+    
+    #needs to add sections of clothing in here
+    
+    
+    def __init__(self):
+        self.accessories = [] #list creation
+    
+    #custom arugment
+    #this function takes in an outfit and adds 
+    def addAcessories(self, *args):
+        #loop through the arguments
+        for accessory in args:
+            self.accessories.append(accessory) #append each acessory
+    
+    
+    #Sort the accessories by the length of the jewlery n
+    #def sortAccessories(self):
+        #return sorted(self.accessories, key=len)
+            
+  
+#testing  
+myoutfit = Outfit()
+myoutfit.addAcessories("Sunglasses","Ear-Rings", "Chain")
+print(myoutfit.sortAccessories())
+print(myoutfit.accessories)
  
