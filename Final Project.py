@@ -116,6 +116,18 @@ def suggest_outfit(date_weather):
     
     weather = date_weather["Weather"].iloc[0] 
     # This should extract the current weather info for the day user inputs
+    """
+    Suggests weather-appropriate clothing based on the given weather conditions
+    the user inputs.
+
+    Parameters:
+        weather_data (function where csv datafile is): 
+        DataFrame containing weather data for
+        the given date.
+
+    Returns:
+        list: A list of clothing items appropriate for the given weather.
+    """
     
     # Linked conditional statements for suggesting clothing 
     
@@ -157,6 +169,6 @@ def suggest_outfit(date_weather):
 
 # Assuming you have already called the date_weather function and stored its result in weather_data
 outfit_suggestion = suggest_outfit(date_weather)
-print("Recommended outfit for the day:", outfit_suggestion)
+print("Recommended outfit of the day:", outfit_suggestion)
 
 
