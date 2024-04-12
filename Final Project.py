@@ -42,14 +42,14 @@ def parse_args():
     The arguments include:
     name: User's name (required)
     age: User's age (optional, must be a positive integer)
-    weather: Weather conditions (optional)
+    Date: Date conditions (optional)
     occasion: Occasion for the outfit (optional)
 
     Returns:
         dict: A dictionary containing the parsed arguments.
             name: User's name (str)
             age: User's age (int)
-            weather: Weather conditions (str or None)
+            date: The date  (str or None)
             occasion: Occasion for the outfit (str or None)
 
     Raises:
@@ -59,11 +59,10 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Smart outfit planner")
     
     # The command line arguments 
-    # User will enter name, age(int), weather, occasion
+    # User will enter name, age(int), date, occasion
     parser.add_argument("name",type = str, help = "The name of the user")
     parser.add_argument("age",type = int, help = "The age of the user")
-    parser.add_argument("weather",type = str, help = "The current weather \
-        conditions")
+    parser.add_argument("date",type = str, help = "The date")
     parser.add_argument("occasion",type = str, help = "Occasion for the outfit")
     
     if not args.name:
@@ -75,7 +74,7 @@ def parse_args():
     return {
         'name': args.name,
         'age': args.age,
-        'weather': args.weather,
+        'date': args.date,
         'occasion': args.occasion
     }
     
