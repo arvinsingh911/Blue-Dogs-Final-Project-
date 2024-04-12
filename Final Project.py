@@ -115,7 +115,7 @@ class Outfit():
         #return sorted(self.accessories, key=len)
             
   
-#testing  
+#testing  for now
 myoutfit = Outfit()
 myoutfit.addAcessory()
 myoutfit.addAcessory("Sunglasses")
