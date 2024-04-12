@@ -87,7 +87,7 @@ class Outfit():
     #needs to add sections of clothing in here
     
     
-    def __init__(self):
+    def __init__(self,):
         self.accessories = [] #list creation
     
     #custom arugment
@@ -109,3 +109,54 @@ myoutfit.addAcessories("Sunglasses","Ear-Rings", "Chain")
 print(myoutfit.sortAccessories())
 print(myoutfit.accessories)
  
+ # craeet a var for this list to be incorpiated into object
+ 
+# outside the class and make a new instance of outfit class 
+def suggest_outfit(date_weather):
+    
+    weather = date_weather["Weather"].iloc[0] 
+    # This should extract the current weather info for the day user inputs
+    
+    # Linked conditional statements for suggesting clothing 
+    
+    # how do I have it pull from the clothing class? 
+    
+    # clothing words in string should be general but maybe each will be a key to 
+    # more specifc values like ex) 
+    
+    # Tops : Longsleeve,Short sleeve,Crop Top,Sleeveless,Graphic Tee xyz
+    # Bottoms : Blue Jeans, Jean shorts, Biker shorts, Gym shorts, Sweatpants, Leggings
+    # Accessories : Sunglasses, Headband, Overhead headphones, Gold earrings/necklace
+    # Shoes: Low top sneakers, High top sneakers, Uggs, Nike slides, Crocs, Birkenstocks
+    
+    #  dictionary 
+    # include this in outfit class / as apart of the outfit class 
+    # when you create a new outfit object as an instance of the class my function can process through my if/else stateemntts 
+    '''rainy day accesories 
+    rainy day shoes 
+    raiiny day bottoms 
+    raininy day xyz '''
+#rain.math.choice(5)
+# if raniny in date_weather: 
+# outfit1=outfit
+
+    if 'rainy' in date_weather :
+        return ['Raincoat', 'Waterproof boots', 'Umbrella']
+    elif 'hot' in date_weather:
+        return ['Shorts', 'T-shirt', 'Sunglasses', 'Slides']
+    elif 'cold' in date_weather:
+        return ['Sweater', 'Sweatpants', 'Scarf', 'Beanie', 'Gloves']
+    elif 'warm' in date_weather:
+        return ['Shirt', 'Shorts', 'Sunglasses' , 'Sneakers']
+    elif 'windy' in date_weather:
+        return ['Hoodie', 'Sweatpants', 'Fluffy Socks', 'Crocs']
+    else:
+        return ['Weather is unpredictable. Dress accordingly.']
+
+# init needs to include parameter for list 
+
+# Assuming you have already called the date_weather function and stored its result in weather_data
+outfit_suggestion = suggest_outfit(date_weather)
+print("Recommended outfit for the day:", outfit_suggestion)
+
+

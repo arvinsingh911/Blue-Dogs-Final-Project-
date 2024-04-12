@@ -87,4 +87,3 @@ myoutfit = Outfit()
 myoutfit.addAcessories("Sunglasses","Ear-Rings", "Chain")
 print(myoutfit.sortAccessories())
 print(myoutfit.accessories)
- 
