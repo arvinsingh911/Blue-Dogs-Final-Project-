@@ -12,8 +12,11 @@ df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
 
 def date_weather(filepath):
     """
-    
-    args: filepath to the 
+    Deterines the weather for a date in April 2024, based on the user inputted date.
+        Args: 
+            stri filepath to the csv file
+        Returns:
+            string of the weather correpsonding to the date in the csv file
     """
     #add doc string for the fucntion 
     user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024")
@@ -29,7 +32,7 @@ def date_weather(filepath):
     day = int(match.group("day"))
     year =int(match.group("year"))
 
-    if month != 4 | day < 1 |day > 30 | year != 2024:
+    if month != 4 or day < 1 or day > 30 or year != 2024:
         raise ValueError ("Ensure that the date entred as a date in April 2024")
     
 
