@@ -14,7 +14,7 @@ def date_weather(filepath):
     """
     Determines the weather for a date in April 2024, based on the user inputted date.
         Args: 
-            stri filepath to the csv file
+            string filepath to the csv file
 
         Raises:
             ValueError: User inputted date does not match the M/D/YYYY format 
