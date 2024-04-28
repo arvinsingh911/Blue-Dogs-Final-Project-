@@ -3,6 +3,8 @@ from pathlib import Path
 import re
 import argparse
 import sys
+import json
+import random
 
 #function takes in data & tells user the weather
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
@@ -203,5 +205,28 @@ def suggest_outfit(date_weather):
 # Assuming you have already called the date_weather function and stored its result in weather_data
 outfit_suggestion = suggest_outfit(date_weather)
 print("Recommended outfit of the day:", outfit_suggestion)
+
+def choose_random_outfit(json_file):
+    """Randomly choose's clothing items from a JSON file and prints the outfit
+
+    Args:
+    json_file (str): The path to the JSON file containing three dictionaries: \
+        'shirts', 'pants', and 'shoes'
+        
+    Side Effects:
+        Prints to the user a potential outfit
+    """
+    with open(json_file, "r", encoding = "utf-8") as file:
+        data = json.load(file)
+    
+    shirt = random.choice(data['shirts'])
+    pants = random.choice(data['pants'])
+    shoes = random.choice(data['shoes'])
+    
+    print("The outfit created based upon the clothes within your closet is: \
+        Shirt: {shirt} Pants: {pants} Shoes: {shoes}")
+
+# Example usage (can delete this and the comment below if needed)
+# choose_random_outfit('clothes.json')
 
 
