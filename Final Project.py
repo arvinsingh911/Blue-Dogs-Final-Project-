@@ -115,38 +115,28 @@ class Outfit():
     def __init__(self):
         """this function initializes the accessories list
         """
-        self.accessories = [] #list creation
+        self.accessories = [] #list creation for accessories
     
-    #custom arugment #new optional parameters
-    #this function takes in an outfit and adds 
-    def addAcessory(self, accessory="jewlery"):
-        """Adds accessory "jewlery" to accessory list in this instance of the 
+
+    def addAccessory(self, accessorynum = 0): #default accessories on an outfit is 0
+        """Adds string "None" to accessory list in this instance of the 
         class. If the calling function has a second parameter that parameter
-        is added to the accessory list instead of "jewlery" as the default
+        is added to the accessory list instead of "None" as the default
+        
 
         Args:
             accessory (str, optional): A string to be added to the list of 
             accessories in this instance of the class. Defaults to "jewlery".
         """
-        #loop through the arguments
-        self.accessories.append(accessory) #append each acessory
-        #extend
-    
-    
-    #Sort the accessories by the length of the jewlery n
-    #def sortAccessories(self):
-        #return sorted(self.accessories, key=len)
+        for i in range(accessorynum): #the user enters a number in the command line anywhere from 0 - 5 
+            self.accessories.append(AccessoriesDict[random.randint(1, 5)]) 
+        if accessorynum == 0: #if user never puts in a value the defualt is 0 but if they put 0 in still works the same
+            self.accessories.append("None") #no ccessories paired with the outfit so accesories is none
             
-  
-#testing  for now
-myoutfit = Outfit()
-myoutfit.addAcessory()
-myoutfit.addAcessory("Sunglasses")
-print(myoutfit.accessories)
- 
- # craeet a var for this list to be incorpiated into object
- 
-# outside the class and make a new instance of outfit class 
+#testing  
+myoutfit = Outfit() #outfit is not paired to outfit class
+myoutfit.addAccessory(args.accessory) #calls the function
+print(myoutfit.accessories) #prints the function 
 def suggest_outfit(date_weather):
     
     weather = date_weather["Weather"].iloc[0] 
@@ -228,5 +218,3 @@ def choose_random_outfit(json_file):
 
 # Example usage (can delete this and the comment below if needed)
 # choose_random_outfit('clothes.json')
-
-
