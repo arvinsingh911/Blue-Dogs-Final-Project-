@@ -5,6 +5,7 @@ import argparse
 import sys
 import json
 import random
+import matplotlib.pyplot as plt
 
 #function takes in data & tells user the weather
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
@@ -53,8 +54,21 @@ def date_weather(filepath):
     else:
         print("Check the format of your date") 
     
-    
 
+# filtering the data for the bar graph
+# addd doc string
+def weather_filter(filepath):
+    df = pd.read_csv(filepath)
+    df_counts = df.groupby("Weather").count().reset_index()
+    df_counts = df_counts.rename(columns={"Date":"Number of Days"}) #changes the 2nd colunm name from Date to Number of Days 
+    # creates a new df w/ the counts of the occurences of each weather type
+    # used the reset_index method, so that this df can have a default numbered index 
+    # before the reset_index function the weather colunm was the index and a series 
+    df_counts.plot.bar(x = "Weather", y="Number of Days")
+    plt.show()
+    return df_counts
+
+   
 
 def parse_args():
     """
