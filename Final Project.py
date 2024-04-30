@@ -183,58 +183,38 @@ print(myoutfit.accessories) #prints the function
 
 
 
-def suggest_outfit(date_weather):
-    
-    weather = date_weather["Weather"].iloc[0] 
-    # This should extract the current weather info for the day user inputs
-    """
-    Suggests weather-appropriate clothing based on the given weather conditions
-    the user inputs.
 
-    Parameters:
-        weather_data (function where csv datafile is): 
-        DataFrame containing weather data for
-        the given date.
 
-    Returns:
-        list: A list of clothing items appropriate for the given weather.
-    """
-    
-    # Linked conditional statements for suggesting clothing 
-    
-    # how do I have it pull from the clothing class? 
-    
-    # clothing words in string should be general but maybe each will be a key to 
-    # more specifc values like ex) 
-    
-    # Tops : Longsleeve,Short sleeve,Crop Top,Sleeveless,Graphic Tee xyz
-    # Bottoms : Blue Jeans, Jean shorts, Biker shorts, Gym shorts, Sweatpants, Leggings
-    # Accessories : Sunglasses, Headband, Overhead headphones, Gold earrings/necklace
-    # Shoes: Low top sneakers, High top sneakers, Uggs, Nike slides, Crocs, Birkenstocks
-    
-    #  dictionary 
-    # include this in outfit class / as apart of the outfit class 
-    # when you create a new outfit object as an instance of the class my function can process through my if/else stateemntts 
-    '''rainy day accesories 
-    rainy day shoes 
-    raiiny day bottoms 
-    raininy day xyz '''
-#rain.math.choice(5)
-# if raniny in date_weather: 
-# outfit1=outfit
-
-    if 'rainy' in date_weather :
-        return ['Raincoat', 'Waterproof boots', 'Umbrella']
-    elif 'hot' in date_weather:
-        return ['Shorts', 'T-shirt', 'Sunglasses', 'Slides']
-    elif 'cold' in date_weather:
-        return ['Sweater', 'Sweatpants', 'Scarf', 'Beanie', 'Gloves']
-    elif 'warm' in date_weather:
-        return ['Shirt', 'Shorts', 'Sunglasses' , 'Sneakers']
-    elif 'windy' in date_weather:
-        return ['Hoodie', 'Sweatpants', 'Fluffy Socks', 'Crocs']
+# Asa Agyemangs function for outfit suggetsions based on weather type
+def suggest_outfit_based_on_weather(weather_data):
+    weather = weather_data["Weather"].iloc[0]
+    with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
+        clothing_data = json.load(weather_for_clothing_file)
+    if weather in clothing_data:
+        weather_clothing = clothing_data[weather]
     else:
-        return ['Weather is unpredictable. Dress accordingly.']
+        raise ValueError(" No weather found for this date ")
+    # list of randomized outfits
+    outfit_suggestions_from_weather = []
+    for i in range(3):
+        #randomized items from (shirt, pants, shoes) to create outfit
+        shirt = random.choice(weather_clothing["shirts"])
+        pants = random.choice(weather_clothing["pants"])
+        shoes = random.choice(weather_clothing["shoes"])
+        # custom dict for the 3 outfit suggestions
+        outfit = {
+            "Shirt": shirt,
+            "Pants": pants,
+            "Shoes": shoes
+        }
+        outfit_suggestions_from_weather.append(outfit)
+    return outfit_suggestions_from_weather
+
+
+
+
+
+
 
 # init needs to include parameter for list 
 
