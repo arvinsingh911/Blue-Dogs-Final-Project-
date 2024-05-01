@@ -5,6 +5,7 @@ import argparse
 import sys
 import json
 import random
+import matplotlib.pyplot as plt
 
 #function takes in data & tells user the weather
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
@@ -16,7 +17,7 @@ def date_weather(filepath):
     """
     Determines the weather for a date in April 2024, based on the user inputted date.
         Args: 
-            stri filepath to the csv file
+            string filepath to the csv file
 
         Raises:
             ValueError: User inputted date does not match the M/D/YYYY format 
@@ -53,8 +54,21 @@ def date_weather(filepath):
     else:
         print("Check the format of your date") 
     
-    
 
+# filtering the data for the bar graph
+# addd doc string
+def weather_filter(filepath):
+    df = pd.read_csv(filepath)
+    df_counts = df.groupby("Weather").count().reset_index()
+    df_counts = df_counts.rename(columns={"Date":"Number of Days"}) #changes the 2nd colunm name from Date to Number of Days 
+    # creates a new df w/ the counts of the occurences of each weather type
+    # used the reset_index method, so that this df can have a default numbered index 
+    # before the reset_index function the weather colunm was the index and a series 
+    df_counts.plot.bar(x = "Weather", y="Number of Days")
+    plt.show()
+    return df_counts
+
+   
 
 def parse_args():
     """
@@ -86,23 +100,36 @@ def parse_args():
     parser.add_argument("name",type = str, help = "The name of the user")
     parser.add_argument("age",type = int, help = "The age of the user")
     parser.add_argument("date",type = str, help = "The date")
-    parser.add_argument("occasion",type = str, help = "Occasion for the outfit")
+    parser.add_argument("-occasion", type=str, default="Casual", help="Occasion for the outfit (optional)")
+    parser.add_argument("-accessory", type=int, default=0, help="Number of accessories (optional)")
     
     if not args.name:
         raise ValueError('Name is required.')
     
-    if args.age is not None and args.age <= 0:
+    if args.age is not None and args.age < 0:
         raise ValueError('Age must be a positive integer.')
+    
+    if args.acessory > 5 or args.acessory <= 0:
+        raise ValueError("You can only have between 0-1 acessories")
     
     return {
         'name': args.name,
         'age': args.age,
         'date': args.date,
-        'occasion': args.occasion
+        'occasion': args.occasion,
+        'accessory': args.accessory
+
     }
     
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
+
+
+
+AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", #dictionary needed for random accessories
+                   4: "Loop Earings", 5: "Apple Watch"}
+
+    
 
 
 class Outfit():
@@ -132,6 +159,11 @@ class Outfit():
             self.accessories.append(AccessoriesDict[random.randint(1, 5)]) 
         if accessorynum == 0: #if user never puts in a value the defualt is 0 but if they put 0 in still works the same
             self.accessories.append("None") #no ccessories paired with the outfit so accesories is none
+            """
+            
+            
+            
+            
             
 #testing  
 myoutfit = Outfit() #outfit is not paired to outfit class
@@ -141,60 +173,51 @@ def suggest_outfit(date_weather):
     
     weather = date_weather["Weather"].iloc[0] 
     # This should extract the current weather info for the day user inputs
-    """
+    
     Suggests weather-appropriate clothing based on the given weather conditions
     the user inputs.
 
-    Parameters:
-        weather_data (function where csv datafile is): 
-        DataFrame containing weather data for
-        the given date.
 
-    Returns:
-        list: A list of clothing items appropriate for the given weather.
-    """
-    
-    # Linked conditional statements for suggesting clothing 
-    
-    # how do I have it pull from the clothing class? 
-    
-    # clothing words in string should be general but maybe each will be a key to 
-    # more specifc values like ex) 
-    
-    # Tops : Longsleeve,Short sleeve,Crop Top,Sleeveless,Graphic Tee xyz
-    # Bottoms : Blue Jeans, Jean shorts, Biker shorts, Gym shorts, Sweatpants, Leggings
-    # Accessories : Sunglasses, Headband, Overhead headphones, Gold earrings/necklace
-    # Shoes: Low top sneakers, High top sneakers, Uggs, Nike slides, Crocs, Birkenstocks
-    
-    #  dictionary 
-    # include this in outfit class / as apart of the outfit class 
-    # when you create a new outfit object as an instance of the class my function can process through my if/else stateemntts 
-    '''rainy day accesories 
-    rainy day shoes 
-    raiiny day bottoms 
-    raininy day xyz '''
-#rain.math.choice(5)
-# if raniny in date_weather: 
-# outfit1=outfit
 
-    if 'rainy' in date_weather :
-        return ['Raincoat', 'Waterproof boots', 'Umbrella']
-    elif 'hot' in date_weather:
-        return ['Shorts', 'T-shirt', 'Sunglasses', 'Slides']
-    elif 'cold' in date_weather:
-        return ['Sweater', 'Sweatpants', 'Scarf', 'Beanie', 'Gloves']
-    elif 'warm' in date_weather:
-        return ['Shirt', 'Shorts', 'Sunglasses' , 'Sneakers']
-    elif 'windy' in date_weather:
-        return ['Hoodie', 'Sweatpants', 'Fluffy Socks', 'Crocs']
+
+
+# Asa Agyemangs function for outfit suggetsions based on weather type
+def suggest_outfit_based_on_weather(weather_data):
+    weather = weather_data["Weather"].iloc[0]
+    with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
+        clothing_data = json.load(weather_for_clothing_file)
+    if weather in clothing_data:
+        weather_clothing = clothing_data[weather]
     else:
-        return ['Weather is unpredictable. Dress accordingly.']
+        raise ValueError(" No weather found for this date ")
+    # list of randomized outfits
+    outfit_suggestions_from_weather = []
+    for i in range(3):
+        #randomized items from (shirt, pants, shoes) to create outfit
+        shirt = random.choice(weather_clothing["shirts"])
+        pants = random.choice(weather_clothing["pants"])
+        shoes = random.choice(weather_clothing["shoes"])
+        # custom dict for the 3 outfit suggestions
+        outfit = {
+            "Shirt": shirt,
+            "Pants": pants,
+            "Shoes": shoes
+        }
+        outfit_suggestions_from_weather.append(outfit)
+    return outfit_suggestions_from_weather
+
+
+
+
+
+
 
 # init needs to include parameter for list 
 
 # Assuming you have already called the date_weather function and stored its result in weather_data
 outfit_suggestion = suggest_outfit(date_weather)
 print("Recommended outfit of the day:", outfit_suggestion)
+"""
 
 def choose_random_outfit(json_file):
     """Randomly choose's clothing items from a JSON file and prints the outfit
