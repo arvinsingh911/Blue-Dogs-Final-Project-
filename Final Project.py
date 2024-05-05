@@ -7,7 +7,9 @@ import json
 import random
 import matplotlib.pyplot as plt
 
-#function takes in data & tells user the weather
+
+
+#function takes in data & tells user the weather 
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
 
 
@@ -58,6 +60,13 @@ def date_weather(filepath):
 # filtering the data for the bar graph
 # addd doc string
 def weather_filter(filepath):
+    """
+
+    
+    
+    
+    """
+
     df = pd.read_csv(filepath)
     df_counts = df.groupby("Weather").count().reset_index()
     df_counts = df_counts.rename(columns={"Date":"Number of Days"}) #changes the 2nd colunm name from Date to Number of Days 
@@ -120,11 +129,11 @@ if __name__ == "__main__":
 
 
 #Arvin here is my testing with the arg parse, fix yours and delete
-"""AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", #dictionary needed for random accessories
+AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", #dictionary needed for random accessories
                    4: "Loop Earings", 5: "Apple Watch"}
 
 
-
+"""
 def parse_args():
     parser = argparse.ArgumentParser(description="Smart outfit planner")
 
