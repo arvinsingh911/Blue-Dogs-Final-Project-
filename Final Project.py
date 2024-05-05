@@ -187,13 +187,12 @@ print(myoutfit.accessories) #prints the function
 
 # Asa Agyemangs function for outfit suggetsions based on weather type
 def suggest_outfit_based_on_weather(weather_data):
-    weather = weather_data["Weather"].iloc[0]
     with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
         clothing_data = json.load(weather_for_clothing_file)
-    if weather in clothing_data:
-        weather_clothing = clothing_data[weather]
+    if weather_data in clothing_data:
+        weather_clothing = clothing_data[weather_data]
     else:
-        raise ValueError(" No weather found for this date ")
+        raise ValueError(" No outfits can be created for this type of weather! ")
     # list of randomized outfits
     outfit_suggestions_from_weather = []
     for i in range(3):
