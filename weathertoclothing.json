@@ -1,28 +1,38 @@
 {
-    "rainy": {
+    "Rainy": {
       "shirts": ["Hoodie", "Denim Shirt", "Sweatshirt", "Long-sleeve Tee","Crew-neck Sweater"],
       "pants": ["Jeans", "Cargo Pants", "Joggers","Leggings"],
       "shoes": ["Rain Boots", "Combat Boots", "Ankle Boots",  "Athletic Shoes"]
     },
-    "sunny": {
+    "Sunny": {
       "shirts": ["Striped T-shirt", "Graphic Tee", "Crop Top", "Tank Top","Muscle Tank"],
       "pants": ["Shorts", "Cargo Shorts", "Swim Trunks","Leggings","Cropped Trousers","Bermuda Shorts" ],
       "shoes": ["Sandals", "Flip Flops", "Espadrilles","Slippers",  "Athletic Shoes"]
     },
-    "cold": {
+    "Cold": {
       "shirts": ["Flannel Shirt", "V-neck Sweater", "Crew-neck Sweater","Hoodie"],
       "pants": ["Sweatpants", "Corduroy Pants","Wide-leg Pants"],
       "shoes": ["Boots", "Work Boots","Hiking Boots","Platform Sneakers", "Athletic Shoes"]
     },
-    "warm": {
+    "Warm": {
       "shirts": ["Button-down Shirt", "Polo Shirt", "Henley Shirt", "Peasant Blouse","Muscle Tank"],
       "pants": ["Chinos", "Khaki Pants", "Capri Pants","Jeggings"],
       "shoes": ["Slip-ons", "Loafers","Slippers",  "Athletic Shoes"]
     },
-    "cool": {
+    "Cool": {
       "shirts": ["Rugby Shirt", "Poplin Shirt", "Oversized Shirt","Crew-neck Sweater"],
       "pants": ["Wide-leg Pants", "High-waisted Pants", "Pleated Trousers","Jeggings"],
       "shoes": ["Moccasins", "Oxfords", "Loafers",   "Platform Sneakers",  "Athletic Shoes"]
-    }
+    },
+    "Windy": {
+      "shirts": ["Rugby Shirt", "Poplin Shirt", "Crew-neck Sweater", "Windbreaker", "Flannel Shirt"],
+      "pants": ["Slim-fit Pants", "High-waisted Pants", "Jeggings", "Cargo Pants", "Nylon Pants"],
+      "shoes": ["Athletic Shoes", "High-top Sneakers", "Boots", "Hiking Shoes"]
+  }
+  
+
+
+
+
   }
   
