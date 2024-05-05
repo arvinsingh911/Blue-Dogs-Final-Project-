@@ -7,6 +7,11 @@ import json
 import random
 import matplotlib.pyplot as plt
 
+
+
+
+
+
 #function takes in data & tells user the weather
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
 
@@ -186,62 +191,41 @@ print(myoutfit.accessories) #prints the function
 
 
 # Asa Agyemangs function for outfit suggetsions based on weather type
-def suggest_outfit_based_on_weather(weather_data):
-    with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
-        clothing_data = json.load(weather_for_clothing_file)
-    if weather_data in clothing_data:
-        weather_clothing = clothing_data[weather_data]
-    else:
-        raise ValueError(" No outfits can be created for this type of weather! ")
-    # list of randomized outfits
-    outfit_suggestions_from_weather = []
-    for i in range(3):
-        #randomized items from (shirt, pants, shoes) to create outfit
-        shirt = random.choice(weather_clothing["shirts"])
-        pants = random.choice(weather_clothing["pants"])
-        shoes = random.choice(weather_clothing["shoes"])
-        # custom dict for the 3 outfit suggestions
-        outfit = {
-            "Shirt": shirt,
-            "Pants": pants,
-            "Shoes": shoes
-        }
-        outfit_suggestions_from_weather.append(outfit)
-    return outfit_suggestions_from_weather
+def suggest_outfit_based_on_weather (weather):
+        with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
+            clothing_data = json.load(weather_for_clothing_file)
+        if weather not in clothing_data:
+            raise ValueError(" No outfits can be created for this type of weather! ")
+        # list of randomized outfits
+        outfit_suggestions_from_weather = []
+        for i in range(3):
+            #randomized items from (shirt, pants, shoes) to create outfit
+            shirt = random.choice(clothing_data[weather]["shirts"])
+            pants = random.choice(clothing_data[weather]["pants"])
+            shoes = random.choice(clothing_data[weather]["shoes"])
+            # custom dict for the 3 outfit suggestions
+            outfit = {
+                "Shirt": shirt,
+                "Pants": pants,
+                "Shoes": shoes
+            }
+            outfit_suggestions_from_weather.append(outfit)
+        return (outfit_suggestions_from_weather) 
+
+try:
+    # Get weather for the given date
+    weather = date_weather("WeatherDataSet.csv")
+    print("Weather:", weather)
+
+    # Get outfit suggestions based on the weather
+    outfit_suggestions = suggest_outfit_based_on_weather(weather)
+    print("Suggested outfits:")
+    for outfit in outfit_suggestions:
+        print(outfit)
+except ValueError as e:
+    print("Error:", e)
 
 
 
-
-
-
-
-# init needs to include parameter for list 
-
-# Assuming you have already called the date_weather function and stored its result in weather_data
-outfit_suggestion = suggest_outfit(date_weather)
-print("Recommended outfit of the day:", outfit_suggestion)
-
-def choose_random_outfit(json_file):
-    """Randomly choose's clothing items from a JSON file and prints the outfit
-
-    Args:
-    json_file (str): The path to the JSON file containing three dictionaries: \
-        'shirts', 'pants', and 'shoes'
-        
-    Side Effects:
-        Prints to the user a potential outfit
-    """
-    with open(json_file, "r", encoding = "utf-8") as file:
-        data = json.load(file)
-    
-    shirt = random.choice(data['shirts'])
-    pants = random.choice(data['pants'])
-    shoes = random.choice(data['shoes'])
-    
-    print("The outfit created based upon the clothes within your closet is: \
-        Shirt: {shirt} Pants: {pants} Shoes: {shoes}")
-
-# Example usage (can delete this and the comment below if needed)
-# choose_random_outfit('clothes.json')
 
 

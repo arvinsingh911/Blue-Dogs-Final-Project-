@@ -4,7 +4,7 @@
       "pants": ["Jeans", "Cargo Pants", "Joggers","Leggings"],
       "shoes": ["Rain Boots", "Combat Boots", "Ankle Boots",  "Athletic Shoes"]
     },
-    "Sunny": {
+    "Hot": {
       "shirts": ["Striped T-shirt", "Graphic Tee", "Crop Top", "Tank Top","Muscle Tank"],
       "pants": ["Shorts", "Cargo Shorts", "Swim Trunks","Leggings","Cropped Trousers","Bermuda Shorts" ],
       "shoes": ["Sandals", "Flip Flops", "Espadrilles","Slippers",  "Athletic Shoes"]
