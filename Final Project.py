@@ -7,12 +7,45 @@ import json
 import random
 import matplotlib.pyplot as plt
 
+<<<<<<< HEAD
+=======
+def recommend_sizes():
+    while True:
+        try:
+            weight = int(input('Enter your weight (in pounds): '))
+            if weight <= 0:
+                raise ValueError('Weight must be a positive number.')
+
+            body_type = input('Enter your body type (Slim/Average/Muscular): ')
+            if body_type.lower() not in ['slim', 'average', 'muscular']:
+                raise ValueError('Invalid body type. Please enter "Slim", "Average", or "Muscular".')
+
+            
+            top_size = 'S' if weight < 150 else ('M' if weight < 180 else 'L+')
+            pants_size = '28-30' if weight < 150 else ('31-33' if weight < 180 else '34-36+')
+            shoe_size = '8' if weight < 150 else ('9' if weight < 180 else '10+')
+
+            
+            print(f'Based on your weight ({weight} lbs) and body type ({body_type}), you should wear:')
+            print(f'Top Size: {top_size}')
+            print(f'Pants Size: {pants_size}')
+            print(f'Shoe Size: {shoe_size}')
+
+            break  
+        except ValueError as e:
+            print(f'Error: {e}')
+            continue
+>>>>>>> 14ec354671a252c597f8a97a25a2559d410e4a76
 
 
 
 
+<<<<<<< HEAD
 
 #function takes in data & tells user the weather
+=======
+#function takes in data & tells user the weather 
+>>>>>>> 14ec354671a252c597f8a97a25a2559d410e4a76
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
 
 
@@ -63,6 +96,13 @@ def date_weather(filepath):
 # filtering the data for the bar graph
 # addd doc string
 def weather_filter(filepath):
+    """
+
+    
+    
+    
+    """
+
     df = pd.read_csv(filepath)
     df_counts = df.groupby("Weather").count().reset_index()
     df_counts = df_counts.rename(columns={"Date":"Number of Days"}) #changes the 2nd colunm name from Date to Number of Days 
@@ -114,10 +154,10 @@ def parse_args():
         raise ValueError('Age must be a positive integer.')
     
     return {
-        'name': args.name,
-        'age': args.age,
+        #'name': args.name,
+        #'age': args.age,
         'date': args.date,
-        'occasion': args.occasion
+        #'occasion': args.occasion
     }
     
 if __name__ == "__main__":
@@ -125,11 +165,11 @@ if __name__ == "__main__":
 
 
 #Arvin here is my testing with the arg parse, fix yours and delete
-"""AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", #dictionary needed for random accessories
+AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", #dictionary needed for random accessories
                    4: "Loop Earings", 5: "Apple Watch"}
 
 
-
+"""
 def parse_args():
     parser = argparse.ArgumentParser(description="Smart outfit planner")
 
