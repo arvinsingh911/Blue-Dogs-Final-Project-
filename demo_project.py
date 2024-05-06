@@ -7,28 +7,8 @@ import sys
 import matplotlib.pyplot as plt
 import random
 import json
-
-
-#function takes in data & tells user the weather
-
 import random
 
-# Dictionary for random accessory selection
-AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", 4: 
-    "Loop Earrings", 5: "Apple Watch"}
-
-def addAccessory(accessorynum=0):
-    accessories = []
-    if accessorynum == "" or int(accessorynum) == 0:
-        accessories.append("No accessories added")
-    else:
-        for i in range(int(accessorynum)):
-            accessories.append(AccessoriesDict[random.randint(1, 5)])
-    return accessories
-
-
-accessorieslist = addAccessory(input("Enter how many accessories you want added to your outfit 1-5, or enter 0 or nothing if you dont want accessories"))
-print(accessorieslist)
 
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
 
@@ -44,6 +24,8 @@ def weather_filter(filepath):
     plt.show()
     return df_counts
 
+
+#function takes in data & tells user the weather
 def date_weather(filepath):
     """
     Determines the weather for a date in April 2024, based on the user inputted date.
@@ -137,9 +119,9 @@ def suggest_outfit_based_on_weather(weather_data):
 
 
 
-# add Asa's fucntion & the try except
+
 recommend_sizes()
-print(date_weather("WeatherDataSet.csv"))
+#print(date_weather("WeatherDataSet.csv"))
 print(weather_filter("WeatherDataSet.csv"))
 
 #  weather for the given date
@@ -160,3 +142,21 @@ if weather:
         print(f"Error suggesting outfits: {problem}")
 else:
     print("Weather data unavailable, skipping outfit suggestions.")
+
+
+# Dictionary for random accessory selection
+AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", 4: 
+    "Loop Earrings", 5: "Apple Watch"}
+
+def addAccessory(accessorynum=0):
+    accessories = []
+    if accessorynum == "" or int(accessorynum) == 0:
+        accessories.append("No accessories added")
+    else:
+        for i in range(int(accessorynum)):
+            accessories.append(AccessoriesDict[random.randint(1, 5)])
+    return accessories
+
+
+accessorieslist = addAccessory(input("Enter how many accessories you want added to your outfit 1-5, or enter 0 or nothing if you dont want accessories"))
+print(accessorieslist)
