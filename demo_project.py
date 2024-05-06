@@ -6,6 +6,7 @@ import argparse
 import sys
 import matplotlib.pyplot as plt
 
+
 #function takes in data & tells user the weather
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
 
@@ -30,7 +31,7 @@ def date_weather(filepath):
             string of the weather correpsonding to the date in the csv file
     """
     #add doc string for the function 
-    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024 :")
+    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024: ")
     try:
         date_pattern = r"(?P<month>\d{1})(?P<slash1>\/)(?P<day>\d{1,2})(?P<slash2>\/)(?P<year>\d{4})"
         match = re.search(date_pattern,user_input)
