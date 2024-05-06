@@ -48,21 +48,19 @@ def date_weather(filepath):
         return weather
     else:
         print("Check the format of your date") 
-    
-def suggest_outfit_based_on_weather(weather):
+
+def suggest_outfit_based_on_weather (weather):
         with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
             clothing_data = json.load(weather_for_clothing_file)
-        if weather in clothing_data:
-            weather_clothing = clothing_data[weather]
-        else:
+        if weather not in clothing_data:
             raise ValueError(" No outfits can be created for this type of weather! ")
         # list of randomized outfits
         outfit_suggestions_from_weather = []
         for i in range(3):
             #randomized items from (shirt, pants, shoes) to create outfit
-            shirt = random.choice(weather_clothing["shirts"])
-            pants = random.choice(weather_clothing["pants"])
-            shoes = random.choice(weather_clothing["shoes"])
+            shirt = random.choice(clothing_data[weather]["shirts"])
+            pants = random.choice(clothing_data[weather]["pants"])
+            shoes = random.choice(clothing_data[weather]["shoes"])
             # custom dict for the 3 outfit suggestions
             outfit = {
                 "Shirt": shirt,
@@ -72,3 +70,23 @@ def suggest_outfit_based_on_weather(weather):
             outfit_suggestions_from_weather.append(outfit)
         return (outfit_suggestions_from_weather) 
 
+
+
+#print(date_weather("WeatherDataSet.csv"))
+
+
+
+#print(suggest_outfit_based_on_weather(date_weather("WeatherDataSet.csv")))
+
+try:
+    # Get weather for the given date
+    weather = date_weather("WeatherDataSet.csv")
+    print("Weather:", weather)
+
+    # Get outfit suggestions based on the weather
+    outfit_suggestions = suggest_outfit_based_on_weather(weather)
+    print("Suggested outfits:")
+    for outfit in outfit_suggestions:
+        print(outfit)
+except ValueError as e:
+    print("Error:", e)
