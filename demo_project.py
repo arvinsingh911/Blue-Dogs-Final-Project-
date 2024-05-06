@@ -121,15 +121,17 @@ def suggest_outfit_based_on_weather(weather_data):
 
 
 recommend_sizes()
-print(date_weather("WeatherDataSet.csv"))
+weather = date_weather("WeatherDataSet.csv")
+print(weather)
+#print(date_weather("WeatherDataSet.csv"))
 print(weather_filter("WeatherDataSet.csv"))
 
 #  weather for the given date
-try:
-    weather = date_weather("WeatherDataSet.csv")
-except ValueError as problem:
-    print(f"Error getting weather: {problem}")
-    weather = None
+# try:
+#     weather = date_weather("WeatherDataSet.csv")
+# except ValueError as problem:
+#     print(f"Error getting weather: {problem}")
+#     weather = None
 
 # If weather works then suggest outfits
 if weather:
