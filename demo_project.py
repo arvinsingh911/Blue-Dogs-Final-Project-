@@ -121,7 +121,7 @@ def suggest_outfit_based_on_weather(weather_data):
 
 
 recommend_sizes()
-#print(date_weather("WeatherDataSet.csv"))
+print(date_weather("WeatherDataSet.csv"))
 print(weather_filter("WeatherDataSet.csv"))
 
 #  weather for the given date
