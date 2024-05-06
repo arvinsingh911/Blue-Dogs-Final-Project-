@@ -5,8 +5,29 @@ import re
 import argparse
 import sys
 import matplotlib.pyplot as plt
+import random
 
 #function takes in data & tells user the weather
+
+import random
+
+# Dictionary for random accessory selection
+AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", 4: 
+    "Loop Earrings", 5: "Apple Watch"}
+
+def addAccessory(accessorynum=0):
+    accessories = []
+    if accessorynum == "" or int(accessorynum) == 0:
+        accessories.append("No accessories added")
+    else:
+        for i in range(int(accessorynum)):
+            accessories.append(AccessoriesDict[random.randint(1, 5)])
+    return accessories
+
+
+accessorieslist = addAccessory(input("Enter how many accessories you want added to your outfit 1-5, or enter 0 or nothing if you dont want accessories"))
+print(accessorieslist)
+
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
 
 def weather_filter(filepath):
