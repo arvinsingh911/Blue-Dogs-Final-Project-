@@ -7,7 +7,6 @@ import json
 import random
 import matplotlib.pyplot as plt
 
-# Arvins Function that recommend sizes based on weight and body type
 def recommend_sizes():
     while True:
         try:
@@ -35,35 +34,7 @@ def recommend_sizes():
             print(f'Error: {e}')
             continue
 
-# Arvins Function that recomends what clothign type you should be looking for based on your heigth in inches 
-def height():
-    """
-    Suggests clothing styles, sizes, and accessories based on the user's height.
 
-    Returns:
-        str: A suggestion for clothing styles, sizes, and accessories based on height.
-    """
-    while True:
-        try:
-            height = int(input("Enter your height in inches: "))
-            if height <= 0:
-                raise ValueError("Height must be a positive integer.")
-            
-            suggestion = ""
-            if height < 60:
-                suggestion = "Petite sizes and shorter hemlines may be more flattering. Consider small accessories like dainty jewelry."
-            elif 60 <= height < 65:
-                suggestion = "Standard sizes and regular hemlines are likely suitable. Accessories of moderate size and length are versatile."
-            elif 65 <= height < 70:
-                suggestion = "Standard sizes and regular hemlines are likely suitable. Accessories of moderate size and length are versatile. For bottoms, consider petite or short lengths."
-            elif 70 <= height < 75:
-                suggestion = "Tall sizes and longer hemlines may provide a better fit. Bold accessories and statement pieces can complement your height."
-            elif height >= 75:
-                suggestion = "Tall sizes and longer hemlines may provide a better fit. Bold accessories and statement pieces can complement your height. For bottoms, consider tall lengths."
-
-            return suggestion
-        except ValueError as e:
-            print(f'Error: {e}')
 
 
 #function takes in data & tells user the weather 
@@ -87,7 +58,7 @@ def date_weather(filepath):
         Returns:
             string of the weather correpsonding to the date in the csv file
     """
-    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024: ")
+    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024")
     try:
         date_pattern = r"(?P<month>\d{1})(?P<slash1>\/)(?P<day>\d{1,2})(?P<slash2>\/)(?P<year>\d{4})"
         match = re.search(date_pattern,user_input)
@@ -136,116 +107,116 @@ def weather_filter(filepath):
 
    
 
-def parse_args():
-    """
-        Parses command-line arguments Smart Outfit Planner.
+# def parse_args():
+#     """
+#         Parses command-line arguments Smart Outfit Planner.
 
-    This function uses ArgumentParser to parse command-line arguments \
-        provided by the user.
-    The arguments include:
-    name: User's name (required)
-    age: User's age (optional, must be a positive integer)
-    Date: Date conditions (optional)
-    occasion: Occasion for the outfit (optional)
+#     This function uses ArgumentParser to parse command-line arguments \
+#         provided by the user.
+#     The arguments include:
+#     name: User's name (required)
+#     age: User's age (optional, must be a positive integer)
+#     Date: Date conditions (optional)
+#     occasion: Occasion for the outfit (optional)
 
-    Returns:
-        dict: A dictionary containing the parsed arguments.
-            name: User's name (str)
-            age: User's age (int)
-            date: The date  (str or None)
-            occasion: Occasion for the outfit (str or None)
+#     Returns:
+#         dict: A dictionary containing the parsed arguments.
+#             name: User's name (str)
+#             age: User's age (int)
+#             date: The date  (str or None)
+#             occasion: Occasion for the outfit (str or None)
 
-    Raises:
-        ValueError: If required arguments are missing or if age is \
-            not a positive integer.
-    """
-    parser = argparse.ArgumentParser(description="Smart outfit planner")
+#     Raises:
+#         ValueError: If required arguments are missing or if age is \
+#             not a positive integer.
+#     """
+#     parser = argparse.ArgumentParser(description="Smart outfit planner")
     
-    # The command line arguments 
-    # User will enter name, age(int), date, occasion
-    parser.add_argument("name",type = str, help = "The name of the user")
-    parser.add_argument("age",type = int, help = "The age of the user")
-    parser.add_argument("date",type = str, help = "The date")
-    parser.add_argument("occasion",type = str, help = "Occasion for the outfit")
+#     # The command line arguments 
+#     # User will enter name, age(int), date, occasion
+#     parser.add_argument("name",type = str, help = "The name of the user")
+#     parser.add_argument("age",type = int, help = "The age of the user")
+#     parser.add_argument("date",type = str, help = "The date")
+#     parser.add_argument("occasion",type = str, help = "Occasion for the outfit")
     
-    if not args.name:
-        raise ValueError('Name is required.')
+#     if not args.name:
+#         raise ValueError('Name is required.')
     
-    if args.age is not None and args.age <= 0:
-        raise ValueError('Age must be a positive integer.')
+#     if args.age is not None and args.age <= 0:
+#         raise ValueError('Age must be a positive integer.')
     
-    return {
-        #'name': args.name,
-        #'age': args.age,
-        'date': args.date,
-        #'occasion': args.occasion
-    }
+#     return {
+#         #'name': args.name,
+#         #'age': args.age,
+#         'date': args.date,
+#         #'occasion': args.occasion
+#     }
     
-if __name__ == "__main__":
-    args = parse_args(sys.argv[1:])
+# if __name__ == "__main__":
+#     args = parse_args(sys.argv[1:])
 
 
-#Arvin here is my testing with the arg parse, fix yours and delete
-AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", #dictionary needed for random accessories
-                   4: "Loop Earings", 5: "Apple Watch"}
+# #Arvin here is my testing with the arg parse, fix yours and delete
+# AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", #dictionary needed for random accessories
+#                    4: "Loop Earings", 5: "Apple Watch"}
 
 
-"""
-def parse_args():
-    parser = argparse.ArgumentParser(description="Smart outfit planner")
+# """
+# def parse_args():
+#     parser = argparse.ArgumentParser(description="Smart outfit planner")
 
-    parser.add_argument("-accessory", type=int, default = 0) #argument parser -accessory is need to be optional and not positional
-    args = parser.parse_args()
-    return args
-    
-
+#     parser.add_argument("-accessory", type=int, default = 0) #argument parser -accessory is need to be optional and not positional
+#     args = parser.parse_args()
+#     return args
     
 
     
-    # if args.num_accessories is not None and args.num_accessories > 5:
-    #     raise ValueError('You cant have more than five accessories')
-    
-    #return {
 
-        #'accessory' : args.accessory
-    #}
     
-if __name__ == "__main__":
-    args = parse_args()"""
+#     # if args.num_accessories is not None and args.num_accessories > 5:
+#     #     raise ValueError('You cant have more than five accessories')
+    
+#     #return {
+
+#         #'accessory' : args.accessory
+#     #}
+    
+# if __name__ == "__main__":
+#     args = parse_args()"""
 
 
-class Outfit():
-    """outfit class
-    """
-    #outfit class to be full developed later with clothing items/outfits
-    #needs to add sections of clothing in here
+# class Outfit():
+#     """outfit class
+#     """
+#     #outfit class to be full developed later with clothing items/outfits
+#     #needs to add sections of clothing in here
     
     
-    def __init__(self):
-        """this function initializes the accessories list
-        """
-        self.accessories = [] #list creation for accessories
+#     def __init__(self):
+#         """this function initializes the accessories list
+#         """
+#         self.accessories = [] #list creation for accessories
     
 
-    def addAccessory(self, accessorynum = 0): #default accessories on an outfit is 0
-        """Adds string "None" to accessory list in this instance of the 
-        class. If the calling function has a second parameter that parameter
-        is added to the accessory list instead of "None" as the default
+#     def addAccessory(self, accessorynum = 0): #default accessories on an outfit is 0
+#         """Adds string "None" to accessory list in this instance of the 
+#         class. If the calling function has a second parameter that parameter
+#         is added to the accessory list instead of "None" as the default
         
 
-        Args:
-            accessory (str, optional): A string to be added to the list of 
-            accessories in this instance of the class. Defaults to "jewlery".
-        """
-        for i in range(accessorynum): #the user enters a number in the command line anywhere from 0 - 5 
-            self.accessories.append(AccessoriesDict[random.randint(1, 5)]) 
-        if accessorynum == 0: #if user never puts in a value the defualt is 0 but if they put 0 in still works the same
-            self.accessories.append("None") #no ccessories paired with the outfit so accesories is none
+#         Args:
+#             accessory (str, optional): A string to be added to the list of 
+#             accessories in this instance of the class. Defaults to "jewlery".
+#         """
+#         for i in range(accessorynum): #the user enters a number in the command line anywhere from 0 - 5 
+#             self.accessories.append(AccessoriesDict[random.randint(1, 5)]) 
+#         if accessorynum == 0: #if user never puts in a value the defualt is 0 but if they put 0 in still works the same
+#             self.accessories.append("None") #no ccessories paired with the outfit so accesories is none
             
-#testing  
-myoutfit = Outfit() #outfit is not paired to outfit class
-myoutfit.addAccessory(args.accessory) #calls the function
-print(myoutfit.accessories) #prints the function
+# #testing  
+# myoutfit = Outfit() #outfit is not paired to outfit class
+# myoutfit.addAccessory(args.accessory) #calls the function
+# print(myoutfit.accessories) #prints the function
 
 
 
