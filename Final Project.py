@@ -3,10 +3,14 @@ from pathlib import Path
 import re
 import argparse
 import sys
+import matplotlib.pyplot as plt
+import random
 import json
 import random
-import matplotlib.pyplot as plt
+from random import sample
 
+global globstr 
+globstr = "("
 def recommend_sizes():
     while True:
         try:
