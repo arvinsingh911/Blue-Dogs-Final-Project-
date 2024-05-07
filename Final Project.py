@@ -105,122 +105,6 @@ def weather_filter(filepath):
     plt.show()
     return df_counts
 
-   
-
-# def parse_args():
-#     """
-#         Parses command-line arguments Smart Outfit Planner.
-
-#     This function uses ArgumentParser to parse command-line arguments \
-#         provided by the user.
-#     The arguments include:
-#     name: User's name (required)
-#     age: User's age (optional, must be a positive integer)
-#     Date: Date conditions (optional)
-#     occasion: Occasion for the outfit (optional)
-
-#     Returns:
-#         dict: A dictionary containing the parsed arguments.
-#             name: User's name (str)
-#             age: User's age (int)
-#             date: The date  (str or None)
-#             occasion: Occasion for the outfit (str or None)
-
-#     Raises:
-#         ValueError: If required arguments are missing or if age is \
-#             not a positive integer.
-#     """
-#     parser = argparse.ArgumentParser(description="Smart outfit planner")
-    
-#     # The command line arguments 
-#     # User will enter name, age(int), date, occasion
-#     parser.add_argument("name",type = str, help = "The name of the user")
-#     parser.add_argument("age",type = int, help = "The age of the user")
-#     parser.add_argument("date",type = str, help = "The date")
-#     parser.add_argument("occasion",type = str, help = "Occasion for the outfit")
-    
-#     if not args.name:
-#         raise ValueError('Name is required.')
-    
-#     if args.age is not None and args.age <= 0:
-#         raise ValueError('Age must be a positive integer.')
-    
-#     return {
-#         #'name': args.name,
-#         #'age': args.age,
-#         'date': args.date,
-#         #'occasion': args.occasion
-#     }
-    
-# if __name__ == "__main__":
-#     args = parse_args(sys.argv[1:])
-
-
-# #Arvin here is my testing with the arg parse, fix yours and delete
-# AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", #dictionary needed for random accessories
-#                    4: "Loop Earings", 5: "Apple Watch"}
-
-
-# """
-# def parse_args():
-#     parser = argparse.ArgumentParser(description="Smart outfit planner")
-
-#     parser.add_argument("-accessory", type=int, default = 0) #argument parser -accessory is need to be optional and not positional
-#     args = parser.parse_args()
-#     return args
-    
-
-    
-
-    
-#     # if args.num_accessories is not None and args.num_accessories > 5:
-#     #     raise ValueError('You cant have more than five accessories')
-    
-#     #return {
-
-#         #'accessory' : args.accessory
-#     #}
-    
-# if __name__ == "__main__":
-#     args = parse_args()"""
-
-
-# class Outfit():
-#     """outfit class
-#     """
-#     #outfit class to be full developed later with clothing items/outfits
-#     #needs to add sections of clothing in here
-    
-    
-#     def __init__(self):
-#         """this function initializes the accessories list
-#         """
-#         self.accessories = [] #list creation for accessories
-    
-
-#     def addAccessory(self, accessorynum = 0): #default accessories on an outfit is 0
-#         """Adds string "None" to accessory list in this instance of the 
-#         class. If the calling function has a second parameter that parameter
-#         is added to the accessory list instead of "None" as the default
-        
-
-#         Args:
-#             accessory (str, optional): A string to be added to the list of 
-#             accessories in this instance of the class. Defaults to "jewlery".
-#         """
-#         for i in range(accessorynum): #the user enters a number in the command line anywhere from 0 - 5 
-#             self.accessories.append(AccessoriesDict[random.randint(1, 5)]) 
-#         if accessorynum == 0: #if user never puts in a value the defualt is 0 but if they put 0 in still works the same
-#             self.accessories.append("None") #no ccessories paired with the outfit so accesories is none
-            
-# #testing  
-# myoutfit = Outfit() #outfit is not paired to outfit class
-# myoutfit.addAccessory(args.accessory) #calls the function
-# print(myoutfit.accessories) #prints the function
-
-
-
-
 
 # Asa Agyemangs function for outfit suggetsions based on weather type
 def suggest_outfit_based_on_weather (weather):
@@ -257,7 +141,108 @@ try:
 except ValueError as e:
     print("Error:", e)
 
+#imported from demo and testing file, 
+def addAccessory(accessorynum=0):
+    """This function asks the users if they would like accessories to pair with
+    their suggested outfits. The default is 0 which means no accessories are 
+    added to the suggested outfit, this means the user could skip input or enter
+    0 and the default would be returned. The user could enter any number from 
+    1-5, which would result in that number of accessoried being added to their
+    outfit, and is randomly ordered and assigned making this function use
+    optional parameters.
 
+    Args:
+        accessorynum (int, optional): number of accessories to be added to the 
+        suggested outfits which can range from 1-5 or even 0. Defaults to 0.
+
+    Returns:
+        list: returns a list of accessories to be paired with outfits
+    """
+    global globstr
+    accessories = []
+    #list creation
+    if accessorynum == "" or int(accessorynum) == 0:
+        accessories.append("No accessories added")
+        #default + condition where user skips or enters 0
+    else:
+        list = [1,2,3,4,5]
+        nums = sample(list, int(accessorynum))
+        for num in nums:
+            accessories.append(AccessoriesDict[num])
+        #accesses dict pull random accessories based on input
+    
+    globstr += 'Accesories: '
+    for accessory in accessories:
+        globstr += accessory + ' '
+    globstr += ')'
+    return accessories
+
+accessorieslist = addAccessory(input("Enter how many accessories you want added to your outfit 1-5, or enter 0 or nothing if you dont want accessories: "))
+print(accessorieslist)
+
+def checkAddToFile():
+    """This function asks the user if they would like to save their outfit to 
+    outfit logs (which is a different file), if the user enters "yes", then the
+    string containing date and outfit make up will be appended to the different
+    file. If the user enters "no" or anything else, the date and outfit make up are not saved to
+    a different file.
+    """
+    check = input("Would you like to save this outfit to outfit logs? Enter yes if so, enter no or anything else if not ")
+    if check == 'yes':
+        print("Ok, saving outfit to file.")
+        file1 = open("Saved.txt", "a")
+        #appends new items to a file
+        file1.writelines(globstr + "\n")
+        #writes new lines to the file which contains the glob str which contains the date, outfits, accesories and adds a new line
+    else:
+        print("Ok, not saving outfit to file.")
+  
+
+def readFromFile():
+    """This function asks the user if they would like to see an outfit from a 
+    past date, if the user enters "yes" the user then has to enter the date
+    they want to choose an outfit from. The function then reads the file where
+    the outfits are stored and uses sequence unpacking to breakdown the
+    information. The user is then asked which out of the three outfits saved
+    they would like to see, and that outfit and its accessories are returned.
+    If the answers anything other than yes, the program essentially ends.
+    If the user enters a date where no outfit is saved, program also ends
+    """
+    want2Read = input("Would you like to see an outfit from a past date? Enter yes if so, enter no or anything else if not: ")
+    if want2Read != 'yes':
+        #program ends
+        print('ok ;(')
+        return
+    date2Read = input("What date would you like to read from: ")
+    #reads each line from file
+    with open('Saved.txt', 'r') as file:
+    # Iterates over each line in the file
+        for line in file:
+            # Processes each line here
+            squp = tuple(map(str, line.split(', ')))
+            date, o1, o2, o3, accessories = squp # sequence unpacking
+            if(date == "(" + date2Read):
+                #asks what outift they want to see
+                outfitNum = input("which outfit would you like to see? (Enter a number 1-3): ")
+                if outfitNum == '1':
+                    print(o1)
+                    print(accessories)
+                    return
+                elif outfitNum == '2':
+                    print(o2)
+                    print(accessories)
+                    return
+                elif outfitNum == '3':
+                    print(o3)
+                    print(accessories)
+                    return
+
+                print("invalid input")
+                return
+        print("No such date found in the file.")
+
+checkAddToFile()
+readFromFile()
 
 
 

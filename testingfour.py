@@ -179,13 +179,16 @@ def addAccessory(accessorynum=0):
     """
     global globstr
     accessories = []
+    #list creation
     if accessorynum == "" or int(accessorynum) == 0:
         accessories.append("No accessories added")
+        #default + condition where user skips or enters 0
     else:
         list = [1,2,3,4,5]
         nums = sample(list, int(accessorynum))
         for num in nums:
             accessories.append(AccessoriesDict[num])
+        #accesses dict pull random accessories based on input
     
     globstr += 'Accesories: '
     for accessory in accessories:
