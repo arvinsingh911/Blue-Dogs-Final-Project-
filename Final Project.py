@@ -11,6 +11,17 @@ from random import sample
 global globstr 
 globstr = "("
 def recommend_sizes():
+    """
+    Recommends clothing sizes based on user's weight and body type. This function 
+    prompts the user to enter their weight in pounds and their body type 
+    (Slim/Average/Muscular). It then calculates and suggests the appropriate 
+    clothing sizes (top, pants, and shoes) based on the input.
+    
+    Raises:
+        ValueError: If weight is not a positive number or body type is not one 
+        of 'Slim', 'Average', or 'Muscular'.
+    
+    """
     while True:
         try:
             weight = int(input('Enter your weight (in pounds): '))
@@ -42,8 +53,12 @@ recommend_sizes()
 def height_suggestions():
     """
     Suggests clothing styles, sizes, and accessories based on the user's height.
+    
     Returns:
         str: A suggestion for clothing styles, sizes, and accessories based on height.
+        
+    Raises:
+        ValueError: If number inputted is negative
     """
     while True:
         try:
