@@ -38,8 +38,8 @@ Bar Plot of weather occurrences
 | Row 2, Col 1 | Arvin Singh | Row 2, Col 3 |
 | Row 1, Col 1 | Marylyn Uzoukwu | Row 1, Col 3 |
 | Row 2, Col 1 | Marylyn Uzoukwu | Row 2, Col 3 |
-| Row 1, Col 1 | Alexander Janco | Row 1, Col 3 |
-| Row 2, Col 1 | Alexander Janco | Row 2, Col 3 |
+| addAccessory | Alexander Janco | -Optional parameters|
+| readFromFile | Alexander Janco | -Sequence unpacking |
 | Row 1, Col 1 | Asa Agyemang | Row 1, Col 3 |
 | Row 2, Col 1 | Asa Agyemang | Row 2, Col 3 |
 
