@@ -36,7 +36,7 @@ def recommend_sizes():
             continue
 
 # Arvins Function that recomends what clothign type you should be looking for based on your heigth in inches 
-def height():
+def height_suggestions():
     """
     Suggests clothing styles, sizes, and accessories based on the user's height.
 
