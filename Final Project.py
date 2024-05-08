@@ -1,7 +1,6 @@
 import pandas as pd
 from pathlib import Path
 import re
-import argparse
 import sys
 import matplotlib.pyplot as plt
 import random
@@ -9,11 +8,8 @@ import json
 import random
 from random import sample
 
-<<<<<<< HEAD
-=======
 global globstr 
 globstr = "("
->>>>>>> e7948592f11d808b6548ef6f62cbbb144c2538c8
 def recommend_sizes():
     while True:
         try:
@@ -44,11 +40,8 @@ def recommend_sizes():
 
 
 
-<<<<<<< HEAD
 
 #function takes in data & tells user the weather
-=======
->>>>>>> e7948592f11d808b6548ef6f62cbbb144c2538c8
 #function takes in data & tells user the weather 
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
 
@@ -120,39 +113,60 @@ def weather_filter(filepath):
 
 # Asa Agyemangs function for outfit suggetsions based on weather type
 def suggest_outfit_based_on_weather (weather):
-        with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
-            clothing_data = json.load(weather_for_clothing_file)
-        if weather not in clothing_data:
-            raise ValueError(" No outfits can be created for this type of weather! ")
-        # list of randomized outfits
-        outfit_suggestions_from_weather = []
-        for i in range(3):
-            #randomized items from (shirt, pants, shoes) to create outfit
-            shirt = random.choice(clothing_data[weather]["shirts"])
-            pants = random.choice(clothing_data[weather]["pants"])
-            shoes = random.choice(clothing_data[weather]["shoes"])
-            # custom dict for the 3 outfit suggestions
-            outfit = {
-                "Shirt": shirt,
-                "Pants": pants,
-                "Shoes": shoes
-            }
-            outfit_suggestions_from_weather.append(outfit)
-        return (outfit_suggestions_from_weather) 
-
-try:
-    # Get weather for the given date
-    weather = date_weather("WeatherDataSet.csv")
-    print("Weather:", weather)
-
-    # Get outfit suggestions based on the weather
-    outfit_suggestions = suggest_outfit_based_on_weather(weather)
-    print("Suggested outfits:")
-    for outfit in outfit_suggestions:
-        print(outfit)
-except ValueError as e:
-    print("Error:", e)
+    '''
+    Suggest a set of outfits based on the weather of a specific day 
     
+    Takes the weather condition from the function above as input and suggest three 
+    outfits based on clothing data from ('weathertoclothing.json') file which 
+    is selected randomly
+    
+    Arguments : weather (str) A string version of weather condition 
+    
+    Returns: list[dict]: A list of dicts where each represents component of an outfit 
+    
+    Rasies: ValueError: If weather condiiton is not found in the json file then 
+    no outfit will be created
+    '''
+    
+    with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
+         clothing_data = json.load(weather_for_clothing_file)
+    if weather not in clothing_data:
+        raise ValueError(" No outfits can be created for this type of weather! ")
+    # list of randomized outfits
+    outfit_suggestions_from_weather = []
+    for i in range(3):
+        #randomized items from (shirt, pants, shoes) to create outfit
+        shirt = random.choice(clothing_data[weather]["shirts"])
+        pants = random.choice(clothing_data[weather]["pants"])
+        shoes = random.choice(clothing_data[weather]["shoes"])
+        # custom dict for the 3 outfit suggestions
+        outfit = {
+            "Shirt": shirt,
+            "Pants": pants,
+            "Shoes": shoes
+         }
+        outfit_suggestions_from_weather.append(outfit)
+    return (outfit_suggestions_from_weather) 
+    
+    
+weather = date_weather("WeatherDataSet.csv")
+print(weather)
+#print(date_weather("WeatherDataSet.csv"))
+print(weather_filter("WeatherDataSet.csv"))
+
+if weather:
+    try:
+        outfit_suggestions = suggest_outfit_based_on_weather(weather)
+        print("Outfit suggestions based on weather:")
+        for outfit in outfit_suggestions:
+            print(outfit)
+    except ValueError as problem:
+        print(f"Error suggesting outfits: {problem}")
+
+
+else:
+    print("Weather data unavailable, skipping outfit suggestions.")
+
 
 
 #imported from demo and testing file, 
@@ -182,7 +196,7 @@ def addAccessory(accessorynum=0):
         list = [1,2,3,4,5]
         nums = sample(list, int(accessorynum))
         for num in nums:
-            accessories.append(AccessoriesDict[num])
+            accessories.append(accessories[num])
         #accesses dict pull random accessories based on input
     
     globstr += 'Accesories: '
@@ -193,6 +207,62 @@ def addAccessory(accessorynum=0):
 
 accessorieslist = addAccessory(input("Enter how many accessories you want added to your outfit 1-5, or enter 0 or nothing if you dont want accessories: "))
 print(accessorieslist)
+
+
+def clothing_store_suggestions ():
+    ''' 
+    Suggets clothing stores based on the users style prefernces 
+    
+    This function will prompt the user to select a style prefernce from a set of
+    valid choices then based on what the user chooses a list of stores will return
+    if its found they associate with the set style (also it will be orgnized by 
+    how pricy it is in terms of dollar signs)
+    
+    Arguments : No arguments but interacts with the user through input prompts 
+    Returns: Prints stores orgnizaed by least to most expensive in console 
+    Raises: Value Error If user selects an invlaid style preferance 
+    
+    
+    '''
+    
+    stores_for_styles = {
+        "Preppy" :[("Zara", "$" ),("Express" ,"$$" )],
+        "Sophisitcated" :[("Ralph Lauren" ,"$$$" ),("White House Black Label" ,"$$$" )],
+        "Comfy" :[("Uniqlo" ,"$" ),("My Comfort Online" , "$$")],
+        "Vintage" :[( "Goodwill "," $" ),(" Buffulo Exchange" ,"$ " )],
+        "Y2K" :[( " Hot Topic "," $" ),(" Dolls Kill " ,"$ " )],
+        "Trendy" :[( "H&M "," $" ),("Urban Outfitters " ,"$$ " )], 
+        "Indescribable" :[( "H&M "," $" ),("Urban Outfitters " ,"$$ " ), 
+        ( " Hot Topic "," $" ),(" Dolls Kill " ,"$ " ), ("Ralph Lauren" ,"$$$" ),("White House Black Label" ,"$$$" ),                   
+        ("Zara", "$" ),("Express" ,"$$" ) ],  
+    }
+    
+    
+    valid_style_choices = set(stores_for_styles.keys())
+    style_preference = input("What's your style preference? (Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy,Indescribable):").title()
+    
+    if style_preference not in valid_style_choices:
+        print("Uh Uh Uh! Please choose from Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy, Indescribable ")
+        return
+        
+    stores = stores_for_styles[style_preference]
+    store_suggestions= [f"{store_name} {cost_indicator}" for store_name, cost_indicator in stores]
+    
+    store_suggestions.sort(key=lambda s: s.count('$'))
+    
+    print(f"Here is your personalized store selection based on your {style_preference} style: ")
+    for suggestion in store_suggestions: 
+        print (suggestion)
+    
+    print ("Thank you so much for using BRAH FIX YOUR FIT! Have a nice day and see you next time! ")
+    
+clothing_store_suggestions ()
+
+
+
+
+
+
 
 def checkAddToFile():
     """This function asks the user if they would like to save their outfit to 
