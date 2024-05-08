@@ -121,7 +121,7 @@ def weather_filter(filepath):
     plt.show()
     return df_counts
 
-print(weather_filter("WeatherDataSet.csv"))
+#print(weather_filter("WeatherDataSet.csv"))
 
 # Asa Agyemangs function for outfit suggetsions based on weather type
 def suggest_outfit_based_on_weather (weather):
