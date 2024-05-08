@@ -40,8 +40,8 @@ Saveoutfit input
 
  Function/Method Name | Author | Techniques Demonstrated/Purpose |
 |----------|----------|----------|
-|Row 1, Col 1 | Arvin Singh| Row 1, Col 3 |
-| Row 2, Col 1 | Arvin Singh | Row 2, Col 3 |
+|Row 1, Col 1 | Arvin Singh| - f-strings containing expressions |
+| Row 2, Col 1 | Arvin Singh | - conditional expressions |
 | date_weather | Marylyn Uzoukwu | -Regular expressions and filtering operations on a pandas data frame|
 | weather_filter | Marylyn Uzoukwu |-Data visualization and group by operations on a pandas data frame |
 | addAccessory | Alexander Janco | -Optional parameters|
