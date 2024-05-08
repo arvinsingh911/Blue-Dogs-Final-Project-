@@ -21,7 +21,11 @@
   
 
 **How to use the program/interpret the output of the program**
+Weight/Body_type input/output
+* The program will allow the user to input a specific body weight and body type, and will return to the user a recommend sizing based upon their inputs. This would be the sizing that the user will by their clothes as.
 
+Height input/output
+* The program will allow the user to input their height Based upon a certain calculation it will determine what size lengths are appropriate for the user.  and based upon this information the user would buy a size medium that is tall or a size medium that is small based upon their heights. The program will also recommend certain accessories that may look good with your height 
 
 Date input
 * The program will allow the user to input the date and will return the weather for the corresponding date. This will allow the user to
