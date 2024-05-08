@@ -1,3 +1,4 @@
+# project_testing
 import pandas as pd
 from pathlib import Path
 import re
@@ -9,11 +10,65 @@ import json
 import random
 from random import sample
 
-<<<<<<< HEAD
-=======
 global globstr 
 globstr = "("
->>>>>>> e7948592f11d808b6548ef6f62cbbb144c2538c8
+
+df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
+
+def weather_filter(filepath):
+    df = pd.read_csv(filepath)
+    df_counts = df.groupby("Weather").count().reset_index()
+    df_counts = df_counts.rename(columns={"Date":"Number of Days"}) #changes the 2nd colunm name from Date to Number of Days 
+
+    # creates a new df w/ the counts of the occurences of each weather type
+    # used the reset_index method, so that this df can have a default numbered index 
+    # before the reset_index function the weather colunm was the index and a series 
+    df_counts.plot.bar(x = "Weather", y="Number of Days")
+    plt.show()
+    return df_counts
+
+
+#function takes in data & tells user the weather
+def date_weather(filepath):
+    """
+    Determines the weather for a date in April 2024, based on the user inputted date.
+        Args: 
+            stri filepath to the csv file
+        Returns:
+            string of the weather correpsonding to the date in the csv file
+    """
+    global globstr
+    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024: ")
+    try:
+        date_pattern = r"(?P<month>\d{1})(?P<slash1>\/)(?P<day>\d{1,2})(?P<slash2>\/)(?P<year>\d{4})"
+        match = re.search(date_pattern,user_input)
+           
+    except:
+        raise ValueError("Format is incorrect. Ensure you are using the M/D/YYYY")
+
+     # check to make sure that date is in the range, use logicical epxresions if, else etc.
+    month = int(match.group("month"))
+    day = int(match.group("day"))
+    year =int(match.group("year"))
+
+    if month != 4 or day < 1 or day > 30 or year != 2024:
+        raise ValueError ("Ensure that the date entred as a date in April 2024")
+    
+
+    df = pd.read_csv(filepath) #loads the dataframe
+    #date_column = df.loc[:"Date"] #acesses the data in the date column
+    
+    df_date = df.loc[df["Date"]==user_input] #filers just the row of data where the user_input = date
+    globstr += user_input + ", "
+    if len(df_date) > 0:
+        weather = df_date.iloc[0]["Weather"]
+        return weather
+        #select the value at 1st row & the 2nd colunm 
+        #save that value to weather variable
+    else:
+        print("Check the format of your date") #should this be a return or try/except?
+
+    
 def recommend_sizes():
     while True:
         try:
@@ -42,120 +97,70 @@ def recommend_sizes():
             continue
 
 
-
-
-<<<<<<< HEAD
-
-#function takes in data & tells user the weather
-=======
->>>>>>> e7948592f11d808b6548ef6f62cbbb144c2538c8
-#function takes in data & tells user the weather 
-df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
-
-
-
-
-def date_weather(filepath):
-    """
-    Determines the weather for a date in April 2024, based on the user inputted date.
-        Args: 
-            string filepath to the csv file
-
-        Raises:
-            ValueError: User inputted date does not match the M/D/YYYY format 
-        
-        Raises:
-            ValueError: User inputed date is not in the CSV dataframe
-
-        Returns:
-            string of the weather correpsonding to the date in the csv file
-    """
-    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024")
-    try:
-        date_pattern = r"(?P<month>\d{1})(?P<slash1>\/)(?P<day>\d{1,2})(?P<slash2>\/)(?P<year>\d{4})"
-        match = re.search(date_pattern,user_input)
-           
-    except:
-        raise ValueError("Format is incorrect. Ensure you are using the M/D/YYYY")
-
-    #call date weather function with file path in my function to call it
-    month = int(match.group("month"))
-    day = int(match.group("day"))
-    year =int(match.group("year"))
-
-    if month != 4 or day < 1 or day > 30 or year != 2024:
-        raise ValueError ("Ensure that the date entered as a date in April 2024")
-    
-
-    df = pd.read_csv(filepath) #loads the dataframe
-    
-    df_date = df.loc[df["Date"]==user_input] #filters just the row of data where the user_input = date
-    if len(df_date) > 0:
-        weather = df_date.iloc[0]["Weather"]
-        return weather
+def suggest_outfit_based_on_weather(weather_data):
+    global globstr
+    with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
+        clothing_data = json.load(weather_for_clothing_file)
+    if weather_data in clothing_data:
+        weather_clothing = clothing_data[weather_data]
     else:
-        print("Check the format of your date") 
+        raise ValueError(" No outfits can be created for this type of weather! ")
+    # list of randomized outfits
+    outfit_suggestions_from_weather = []
     
+    for i in range(3):
+        #randomized items from (shirt, pants, shoes) to create outfit
+        shirt = random.choice(weather_clothing["shirts"])
+        pants = random.choice(weather_clothing["pants"])
+        shoes = random.choice(weather_clothing["shoes"])
+        # custom dict for the 3 outfit suggestions
+        outfit = {
+            "Shirt": shirt,
+            "Pants": pants,
+            "Shoes": shoes
+        }
+        globstr += f'Outfit {i + 1}: '
+        globstr += f'Shirt:{shirt} '
+        globstr += f'Pants:{pants} '
+        globstr += f'Shoes:{shoes}, '
+        
+        outfit_suggestions_from_weather.append(outfit)
 
-# filtering the data for the bar graph
-# addd doc string
-def weather_filter(filepath):
-    """
-
-    
-    
-    
-    """
-
-    df = pd.read_csv(filepath)
-    df_counts = df.groupby("Weather").count().reset_index()
-    df_counts = df_counts.rename(columns={"Date":"Number of Days"}) #changes the 2nd colunm name from Date to Number of Days 
-    # creates a new df w/ the counts of the occurences of each weather type
-    # used the reset_index method, so that this df can have a default numbered index 
-    # before the reset_index function the weather colunm was the index and a series 
-    df_counts.plot.bar(x = "Weather", y="Number of Days")
-    plt.show()
-    return df_counts
-
-
-# Asa Agyemangs function for outfit suggetsions based on weather type
-def suggest_outfit_based_on_weather (weather):
-        with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
-            clothing_data = json.load(weather_for_clothing_file)
-        if weather not in clothing_data:
-            raise ValueError(" No outfits can be created for this type of weather! ")
-        # list of randomized outfits
-        outfit_suggestions_from_weather = []
-        for i in range(3):
-            #randomized items from (shirt, pants, shoes) to create outfit
-            shirt = random.choice(clothing_data[weather]["shirts"])
-            pants = random.choice(clothing_data[weather]["pants"])
-            shoes = random.choice(clothing_data[weather]["shoes"])
-            # custom dict for the 3 outfit suggestions
-            outfit = {
-                "Shirt": shirt,
-                "Pants": pants,
-                "Shoes": shoes
-            }
-            outfit_suggestions_from_weather.append(outfit)
-        return (outfit_suggestions_from_weather) 
-
-try:
-    # Get weather for the given date
-    weather = date_weather("WeatherDataSet.csv")
-    print("Weather:", weather)
-
-    # Get outfit suggestions based on the weather
-    outfit_suggestions = suggest_outfit_based_on_weather(weather)
-    print("Suggested outfits:")
-    for outfit in outfit_suggestions:
-        print(outfit)
-except ValueError as e:
-    print("Error:", e)
-    
+    return outfit_suggestions_from_weather
 
 
-#imported from demo and testing file, 
+
+
+recommend_sizes()
+weather = date_weather("WeatherDataSet.csv")
+print(weather)
+#print(date_weather("WeatherDataSet.csv"))
+print(weather_filter("WeatherDataSet.csv"))
+
+#  weather for the given date
+# try:
+#     weather = date_weather("WeatherDataSet.csv")
+# except ValueError as problem:
+#     print(f"Error getting weather: {problem}")
+#     weather = None
+
+# If weather works then suggest outfits
+if weather:
+    try:
+        outfit_suggestions = suggest_outfit_based_on_weather(weather)
+        print("Outfit suggestions based on weather:")
+        for outfit in outfit_suggestions:
+            print(outfit)
+    except ValueError as problem:
+        print(f"Error suggesting outfits: {problem}")
+else:
+    print("Weather data unavailable, skipping outfit suggestions.")
+
+
+# Dictionary for random accessory selection
+AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", 4: 
+    "Loop Earrings", 5: "Apple Watch"}
+
 def addAccessory(accessorynum=0):
     """This function asks the users if they would like accessories to pair with
     their suggested outfits. The default is 0 which means no accessories are 
@@ -257,6 +262,3 @@ def readFromFile():
 
 checkAddToFile()
 readFromFile()
-
-
-

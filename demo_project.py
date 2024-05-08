@@ -7,9 +7,6 @@ import sys
 import matplotlib.pyplot as plt
 import random
 import json
-
-#function takes in data & tells user the weather
-
 import random
 
 # Dictionary for random accessory selection
@@ -38,9 +35,6 @@ def addAccessory(accessorynum=0):
     return accessories
 
 
-accessorieslist = addAccessory(input("Enter how many accessories you want added to your outfit 1-5, or enter 0 or nothing if you dont want accessories"))
-print(accessorieslist)
-
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
 
 def weather_filter(filepath):
@@ -55,6 +49,8 @@ def weather_filter(filepath):
     plt.show()
     return df_counts
 
+
+#function takes in data & tells user the weather
 def date_weather(filepath):
     """
     Determines the weather for a date in April 2024, based on the user inputted date.
@@ -64,7 +60,7 @@ def date_weather(filepath):
             string of the weather correpsonding to the date in the csv file
     """
     #add doc string for the function 
-    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024 :")
+    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024: ")
     try:
         date_pattern = r"(?P<month>\d{1})(?P<slash1>\/)(?P<day>\d{1,2})(?P<slash2>\/)(?P<year>\d{4})"
         match = re.search(date_pattern,user_input)
@@ -165,18 +161,16 @@ def clothing_store_suggestions ():
     print ("Thank you so much for using BRAH FIX YOUR FIT! Have a nice day and see you next time! ")
         
 # add Asa's fucntion & the try except
+
+
+
+
 recommend_sizes()
-print(date_weather("WeatherDataSet.csv"))
+weather = date_weather("WeatherDataSet.csv")
+print(weather)
+#print(date_weather("WeatherDataSet.csv"))
 print(weather_filter("WeatherDataSet.csv"))
 
-#  weather for the given date
-try:
-    weather = date_weather("WeatherDataSet.csv")
-except ValueError as problem:
-    print(f"Error getting weather: {problem}")
-    weather = None
-
-# If weather works then suggest outfits
 if weather:
     try:
         outfit_suggestions = suggest_outfit_based_on_weather(weather)
@@ -185,9 +179,27 @@ if weather:
             print(outfit)
     except ValueError as problem:
         print(f"Error suggesting outfits: {problem}")
-        
-        
-#print("Calling clothing_store_suggestions()") 
+
+
+else:
+    print("Weather data unavailable, skipping outfit suggestions.")
+
+
+# Dictionary for random accessory selection
+AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", 4: 
+    "Loop Earrings", 5: "Apple Watch"}
+
+def addAccessory(accessorynum=0):
+    accessories = []
+    if accessorynum == "" or int(accessorynum) == 0:
+        accessories.append("No accessories added")
+    else:
+        for i in range(int(accessorynum)):
+            accessories.append(AccessoriesDict[random.randint(1, 5)])
+    return accessories
+
+
+accessorieslist = addAccessory(input("Enter how many accessories you want added to your outfit 1-5, or enter 0 or nothing if you dont want accessories"))
+print(accessorieslist)
+
 clothing_store_suggestions ()
-
-
