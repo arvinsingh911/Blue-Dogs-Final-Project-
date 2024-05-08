@@ -41,6 +41,10 @@ Accessories input
 Saveoutfit input
 * The program will allow the user to type yes to save outfit, or the user can type no or anything else to not save the outfit. What option they went with is returned in the terminal for them to see (for example if they typed no, then the terminal out put would be "Ok, not saving to file).
 
+Pastoutfit input
+* The program will allow the userto type yes if they would like to see a past outfit or enter no or anything else if they would not like to. If yes, the user types in the date of a previously saved outfit, and the outfit number they want to see. What option they went with is returned in the terminal for them to see (for example if they typed yes, (4/20/2024), 3, they would see the third outfit from that date)
+
+
 
 **Attribution**
 
