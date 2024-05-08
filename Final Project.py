@@ -295,7 +295,7 @@ def clothing_store_suggestions ():
     
     
     valid_style_choices = set(stores_for_styles.keys())
-    style_preference = input("What's your style preference? (Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy,Indescribable):").title()
+    style_preference = input("What's your style preference? (Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy,Indescribable): ").title()
     
     if style_preference not in valid_style_choices:
         print("Uh Uh Uh! Please choose from Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy, Indescribable ")
