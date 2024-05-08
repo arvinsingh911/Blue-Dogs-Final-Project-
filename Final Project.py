@@ -360,28 +360,27 @@ def readFromFile():
         for line in file:
             # Processes each line here
             squp = tuple(map(str, line.split(', ')))
-            try:
-                date, o1, o2, o3, accessories = squp # sequence unpacking
-                if(date == "(" + date2Read):
-                    #asks what outift they want to see
-                    outfitNum = input("which outfit would you like to see? (Enter a number 1-3): ")
-                    if outfitNum == '1':
-                        print(o1)
-                        print(accessories)
-                        return
-                    elif outfitNum == '2':
-                        print(o2)
-                        print(accessories)
-                        return
-                    elif outfitNum == '3':
-                        print(o3)
-                        print(accessories)
-                        return
-            except ValueError:
-                continue
-            print("invalid input")
-            return
+            date, o1, o2, o3, accessories = squp # sequence unpacking
+            if(date == "(" + date2Read):
+                #asks what outift they want to see
+                outfitNum = input("which outfit would you like to see? (Enter a number 1-3): ")
+                if outfitNum == '1':
+                    print(o1)
+                    print(accessories)
+                    return
+                elif outfitNum == '2':
+                    print(o2)
+                    print(accessories)
+                    return
+                elif outfitNum == '3':
+                    print(o3)
+                    print(accessories)
+                    return
+
+                print("invalid input")
+                return
         print("No such date found in the file.")
+
 
 checkAddToFile()
 readFromFile()
