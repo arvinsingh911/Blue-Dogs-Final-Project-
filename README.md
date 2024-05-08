@@ -29,6 +29,12 @@ Date input
 Bar Plot of weather occurrences
 * The bar plot will allow the user to see how many days it is rainy, windy, warm, cool, cold, and hot for the month of April 2024.
 
+Accessories input
+* The program will allow the user to enter the number of accessories they want added to their outfit (1-5) if they want accessories added to their outfit. If the user enters 0 or hits enter the user can choose to add not accessories to their outfit. What option they went with is returned in the terminal for them to see (for example if they chose to add 2 accessories two random accessories added can be seen in the terminal.
+
+Saveoutfit input
+* 
+
 
 **Attribution**
 
