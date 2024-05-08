@@ -7,8 +7,6 @@ import json
 import random
 import matplotlib.pyplot as plt
 
-<<<<<<< HEAD
-=======
 def recommend_sizes():
     while True:
         try:
@@ -35,17 +33,13 @@ def recommend_sizes():
         except ValueError as e:
             print(f'Error: {e}')
             continue
->>>>>>> 14ec354671a252c597f8a97a25a2559d410e4a76
 
 
 
 
-<<<<<<< HEAD
 
 #function takes in data & tells user the weather
-=======
 #function takes in data & tells user the weather 
->>>>>>> 14ec354671a252c597f8a97a25a2559d410e4a76
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
 
 
@@ -264,6 +258,8 @@ try:
         print(outfit)
 except ValueError as e:
     print("Error:", e)
+    
+
 
 
 

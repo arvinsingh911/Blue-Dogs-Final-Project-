@@ -16,6 +16,18 @@ import random
 AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", 4: 
     "Loop Earrings", 5: "Apple Watch"}
 
+stores_for_styles = {
+        "Preppy" :[("Zara", "$" ),("Express" ,"$$" )],
+        "Sophisitcated" :[("Ralph Lauren" ,"$$$" ),("White House Black Label" ,"$$$" )],
+        "Comfy" :[("Uniqlo" ,"$" ),("My Comfort Online" , "$$")],
+        "Vintage" :[( "Goodwill "," $" ),(" Buffulo Exchange" ,"$ " )],
+        "Y2K" :[( " Hot Topic "," $" ),(" Dolls Kill " ,"$ " )],
+        "Trendy" :[( "H&M "," $" ),("Urban Outfitters " ,"$$ " )], 
+        "Indescribable" :[( "H&M "," $" ),("Urban Outfitters " ,"$$ " ), 
+        ( " Hot Topic "," $" ),(" Dolls Kill " ,"$ " ), ("Ralph Lauren" ,"$$$" ),("White House Black Label" ,"$$$" ),                   
+        ("Zara", "$" ),("Express" ,"$$" ) ],  
+    }
+
 def addAccessory(accessorynum=0):
     accessories = []
     if accessorynum == "" or int(accessorynum) == 0:
@@ -133,9 +145,25 @@ def suggest_outfit_based_on_weather(weather_data):
         outfit_suggestions_from_weather.append(outfit)
     return outfit_suggestions_from_weather
 
-
-
-
+def clothing_store_suggestions ():
+    valid_style_choices = set(stores_for_styles.keys())
+    style_preference = input("What's your style preference? (Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy,Indescribable):").title()
+    
+    if style_preference not in valid_style_choices:
+        print("Uh Uh Uh! Please choose from Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy, Indescribable ")
+        return
+        
+    stores = stores_for_styles[style_preference]
+    store_suggestions= [f"{store_name} {cost_indicator}" for store_name, cost_indicator in stores]
+    
+    store_suggestions.sort(key=lambda s: s.count('$'))
+    
+    print(f"Here is your personalized store selection based on your {style_preference} style: ")
+    for suggestion in store_suggestions: 
+        print (suggestion)
+    
+    print ("Thank you so much for using BRAH FIX YOUR FIT! Have a nice day and see you next time! ")
+        
 # add Asa's fucntion & the try except
 recommend_sizes()
 print(date_weather("WeatherDataSet.csv"))
@@ -157,5 +185,9 @@ if weather:
             print(outfit)
     except ValueError as problem:
         print(f"Error suggesting outfits: {problem}")
-else:
-    print("Weather data unavailable, skipping outfit suggestions.")
+        
+        
+#print("Calling clothing_store_suggestions()") 
+clothing_store_suggestions ()
+
+
