@@ -9,11 +9,8 @@ import json
 import random
 from random import sample
 
-<<<<<<< HEAD
-=======
 global globstr 
 globstr = "("
->>>>>>> e7948592f11d808b6548ef6f62cbbb144c2538c8
 def recommend_sizes():
     while True:
         try:
@@ -43,12 +40,8 @@ def recommend_sizes():
 
 
 
+recommend_sizes()
 
-<<<<<<< HEAD
-
-#function takes in data & tells user the weather
-=======
->>>>>>> e7948592f11d808b6548ef6f62cbbb144c2538c8
 #function takes in data & tells user the weather 
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
 
@@ -70,7 +63,7 @@ def date_weather(filepath):
         Returns:
             string of the weather correpsonding to the date in the csv file
     """
-    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024")
+    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024: ")
     try:
         date_pattern = r"(?P<month>\d{1})(?P<slash1>\/)(?P<day>\d{1,2})(?P<slash2>\/)(?P<year>\d{4})"
         match = re.search(date_pattern,user_input)
@@ -127,6 +120,7 @@ def weather_filter(filepath):
     plt.show()
     return df_counts
 
+print(weather_filter("WeatherDataSet.csv"))
 
 # Asa Agyemangs function for outfit suggetsions based on weather type
 def suggest_outfit_based_on_weather (weather):
@@ -163,6 +157,9 @@ try:
 except ValueError as e:
     print("Error:", e)
     
+# weather = date_weather("WeatherDataSet.csv")
+# print(weather)
+#print(date_weather("WeatherDataSet.csv"))
 
 
 #imported from demo and testing file, 
