@@ -1,6 +1,7 @@
 **How to run the program**
 * In the terminal type python if using Windows or python3 if using Mac and then a space then type Final Project.py in quotes
-* Size & Height:
+* Size: Theres a question that prompts the user about their weight and body type, and based on certain categories itrecommend's sizing of shirts, pants, and shoes based upon the body weight and body type of the user
+* Height: Theres a question that prompts the user about their height, and based on this itrecommend's and make's suggestions on what type of sizing in styles would look better on your person based upon your height. This is just a suggestion of sizes, accessories and what length the item of clothing should be such as large and tall, moderate size and petite. This is because differnt heights have different lenght requirments for sizing and fitting 
 * Date input: There will be a question that asks the user what date they would like to know the weather. The user should enter a date in the month of April 2024
 * Accessories: There will be a question that asks if user wants to add accessories to their outfit or not. If the user does want to add accessories they enter a number 1-5 (correlating to the number of accessories they want to add). If not, the user can enter 0 or hit enter and no accessories will be added to their outfit.
 * Style Preference:
