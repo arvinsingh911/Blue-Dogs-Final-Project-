@@ -15,7 +15,7 @@
   corresponding weather for the date that is inputted for the date_weather function
   -This file also is needed for the weather_filter function. This function creates a new data frame that groups the weather
   types counts the occurrences of each weather type, based on the CSV file. Then the function plots the weather types vs the number of occurrences as a bar plot.
-* Saved.txt
+* Saved.txt file
   -This file is used by the checkAddToFile and readFromFile functions to help save and return outfits the user has created.
   
 
