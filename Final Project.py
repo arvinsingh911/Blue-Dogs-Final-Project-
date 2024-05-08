@@ -9,8 +9,11 @@ import json
 import random
 from random import sample
 
+<<<<<<< HEAD
+=======
 global globstr 
 globstr = "("
+>>>>>>> e7948592f11d808b6548ef6f62cbbb144c2538c8
 def recommend_sizes():
     while True:
         try:
@@ -41,6 +44,11 @@ def recommend_sizes():
 
 
 
+<<<<<<< HEAD
+
+#function takes in data & tells user the weather
+=======
+>>>>>>> e7948592f11d808b6548ef6f62cbbb144c2538c8
 #function takes in data & tells user the weather 
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
 
@@ -154,6 +162,8 @@ try:
         print(outfit)
 except ValueError as e:
     print("Error:", e)
+    
+
 
 #imported from demo and testing file, 
 def addAccessory(accessorynum=0):

@@ -5,22 +5,22 @@
       "shoes": ["Rain Boots", "Combat Boots", "Ankle Boots",  "Athletic Shoes"]
     },
     "Hot": {
-      "shirts": ["Striped T-shirt", "Graphic Tee", "Crop Top", "Tank Top","Muscle Tank"],
-      "pants": ["Shorts", "Cargo Shorts", "Swim Trunks","Leggings","Cropped Trousers","Bermuda Shorts" ],
-      "shoes": ["Sandals", "Flip Flops", "Espadrilles","Slippers",  "Athletic Shoes"]
+      "shirts": ["Striped T-shirt", "Graphic Tee", "Crop Top", "Tank Top","Muscle Tank", "Cropped T- Shirt", "Halter Neck Crop Top"],
+      "pants": ["Shorts", "Cargo Shorts", "Swim Trunks","Leggings","Cropped Trousers","Bermuda Shorts", "Jean Shorts", "Mini Skirt"],
+      "shoes": ["Sandals", "Flip Flops", "Espadrilles","Slippers",  "Athletic Shoes", "Yezzy Pods", "Nike Slides", "Birkenstocks"]
     },
     "Cold": {
-      "shirts": ["Flannel Shirt", "V-neck Sweater", "Crew-neck Sweater","Hoodie"],
-      "pants": ["Sweatpants", "Corduroy Pants","Wide-leg Pants"],
-      "shoes": ["Boots", "Work Boots","Hiking Boots","Platform Sneakers", "Athletic Shoes"]
+      "shirts": ["Flannel Shirt", "V-neck Sweater", "Crew-neck Sweater","Hoodie", "Essentail FEAR OF GOD Hoodie","Grateful Puff Print Sweatshirt"],
+      "pants": ["Sweatpants", "Corduroy Pants","Wide-leg Pants","Fleece Lined Leggings","Skirt with Fleece Stockings"],
+      "shoes": ["Boots", "Work Boots","Hiking Boots","Platform Sneakers", "Athletic Shoes","Uggs","Fluffy Slides w/ Fuzzy Socks"]
     },
     "Warm": {
-      "shirts": ["Button-down Shirt", "Polo Shirt", "Henley Shirt", "Peasant Blouse","Muscle Tank"],
-      "pants": ["Chinos", "Khaki Pants", "Capri Pants","Jeggings"],
-      "shoes": ["Slip-ons", "Loafers","Slippers",  "Athletic Shoes"]
+      "shirts": ["Button-down Shirt", "Polo Shirt", "Henley Shirt", "Peasant Blouse","Muscle Tank","Thin y2k Longsleeve","Hawiann Dad Shirt"],
+      "pants": ["Chinos", "Khaki Pants", "Capri Pants","Jeggings", "Joggers"],
+      "shoes": ["Slip-ons", "Loafers","Slippers",  "Athletic Shoes","Yezzy Slides"]
     },
     "Cool": {
-      "shirts": ["Rugby Shirt", "Poplin Shirt", "Oversized Shirt","Crew-neck Sweater"],
+      "shirts": ["Rugby Shirt", "Poplin Shirt", "Oversized Shirt","Crew-neck Sweater", "Leather Jacket"],
       "pants": ["Wide-leg Pants", "High-waisted Pants", "Pleated Trousers","Jeggings"],
       "shoes": ["Moccasins", "Oxfords", "Loafers",   "Platform Sneakers",  "Athletic Shoes"]
     },
