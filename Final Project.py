@@ -63,7 +63,8 @@ def date_weather(filepath):
         Returns:
             string of the weather correpsonding to the date in the csv file
     """
-    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024")
+    global globstr
+    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024 ")
     try:
         date_pattern = r"(?P<month>\d{1})(?P<slash1>\/)(?P<day>\d{1,2})(?P<slash2>\/)(?P<year>\d{4})"
         match = re.search(date_pattern,user_input)
@@ -83,6 +84,7 @@ def date_weather(filepath):
     df = pd.read_csv(filepath) #loads the dataframe
     
     df_date = df.loc[df["Date"]==user_input] #filters just the row of data where the user_input = date
+    globstr += user_input + ", "
     if len(df_date) > 0:
         weather = df_date.iloc[0]["Weather"]
         return weather
@@ -137,7 +139,7 @@ def suggest_outfit_based_on_weather (weather):
     Rasies: ValueError: If weather condiiton is not found in the json file then 
     no outfit will be created
     '''
-    
+    global globstr
     with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
          clothing_data = json.load(weather_for_clothing_file)
     if weather not in clothing_data:
@@ -155,6 +157,10 @@ def suggest_outfit_based_on_weather (weather):
             "Pants": pants,
             "Shoes": shoes
          }
+        globstr += f'Outfit {i + 1}: '
+        globstr += f'Shirt:{shirt} '
+        globstr += f'Pants:{pants} '
+        globstr += f'Shoes:{shoes}, '
         outfit_suggestions_from_weather.append(outfit)
     return (outfit_suggestions_from_weather) 
     
@@ -302,7 +308,7 @@ def readFromFile():
     want2Read = input("Would you like to see an outfit from a past date? Enter yes if so, enter no or anything else if not: ")
     if want2Read != 'yes':
         #program ends
-        print('ok ;(')
+        print('ok thanks for using our program ;(')
         return
     date2Read = input("What date would you like to read from: ")
     #reads each line from file
@@ -311,25 +317,27 @@ def readFromFile():
         for line in file:
             # Processes each line here
             squp = tuple(map(str, line.split(', ')))
-            date, o1, o2, o3, accessories = squp # sequence unpacking
-            if(date == "(" + date2Read):
-                #asks what outift they want to see
-                outfitNum = input("which outfit would you like to see? (Enter a number 1-3): ")
-                if outfitNum == '1':
-                    print(o1)
-                    print(accessories)
-                    return
-                elif outfitNum == '2':
-                    print(o2)
-                    print(accessories)
-                    return
-                elif outfitNum == '3':
-                    print(o3)
-                    print(accessories)
-                    return
-
-                print("invalid input")
-                return
+            try:
+                date, o1, o2, o3, accessories = squp # sequence unpacking
+                if(date == "(" + date2Read):
+                    #asks what outift they want to see
+                    outfitNum = input("which outfit would you like to see? (Enter a number 1-3): ")
+                    if outfitNum == '1':
+                        print(o1)
+                        print(accessories)
+                        return
+                    elif outfitNum == '2':
+                        print(o2)
+                        print(accessories)
+                        return
+                    elif outfitNum == '3':
+                        print(o3)
+                        print(accessories)
+                        return
+            except ValueError:
+                continue
+            print("invalid input")
+            return
         print("No such date found in the file.")
 
 checkAddToFile()
