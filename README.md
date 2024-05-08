@@ -36,8 +36,8 @@ Bar Plot of weather occurrences
 |----------|----------|----------|
 |Row 1, Col 1 | Arvin Singh| Row 1, Col 3 |
 | Row 2, Col 1 | Arvin Singh | Row 2, Col 3 |
-| Row 1, Col 1 | Marylyn Uzoukwu | Row 1, Col 3 |
-| Row 2, Col 1 | Marylyn Uzoukwu | Row 2, Col 3 |
+| date_weather | Marylyn Uzoukwu | -Regular expressions and filtering operations on a pandas data frame|
+| weather_filter | Marylyn Uzoukwu |-Data visualization and group by operations on a pandas data frame |
 | addAccessory | Alexander Janco | -Optional parameters|
 | readFromFile | Alexander Janco | -Sequence unpacking |
 | Row 1, Col 1 | Asa Agyemang | Row 1, Col 3 |
