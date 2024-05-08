@@ -21,6 +21,7 @@
   
 
 **How to use the program/interpret the output of the program**
+
 Weight/Body_type input/output
 * The program will allow the user to input a specific body weight and body type, and will return to the user a recommend sizing based upon their inputs. This would be the sizing that the user will by their clothes as.
 
