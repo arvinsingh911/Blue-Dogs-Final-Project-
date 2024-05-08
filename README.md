@@ -34,8 +34,16 @@ Bar Plot of weather occurrences
 
  Function/Method Name | Author | Techniques Demonstrated/Purpose |
 |----------|----------|----------|
-| Row 1, Col 1 | Row 1, Col 2 | Row 1, Col 3 |
-| Row 2, Col 1 | Row 2, Col 2 | Row 2, Col 3 |
+|Row 1, Col 1 | Arvin Singh| Row 1, Col 3 |
+| Row 2, Col 1 | Arvin Singh | Row 2, Col 3 |
+| Row 1, Col 1 | Marylyn Uzoukwu | Row 1, Col 3 |
+| Row 2, Col 1 | Marylyn Uzoukwu | Row 2, Col 3 |
+| Row 1, Col 1 | Alexander Janco | Row 1, Col 3 |
+| Row 2, Col 1 | Alexander Janco | Row 2, Col 3 |
+| Row 1, Col 1 | Asa Agyemang | Row 1, Col 3 |
+| Row 2, Col 1 | Asa Agyemang | Row 2, Col 3 |
+
+
 
 
 
