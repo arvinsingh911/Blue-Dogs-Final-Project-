@@ -94,9 +94,19 @@ def date_weather(filepath):
 # addd doc string
 def weather_filter(filepath):
     """
+    Groups the occurrences of the weather for hot, warm, cold, cool and 
+    windy and graphs a bar plot to show the number of occurreces for each weather 
+    type.
 
-    
-    
+    Args:
+        string file path to the csv file 
+
+    Side effects:
+        Creates a bar graph that shows the occurrences of each weather type
+
+    Returns:
+        Returns a new data frame that shows that counts the number of occurrences 
+        of each weather type
     
     """
 
@@ -327,6 +337,5 @@ def readFromFile():
 
 checkAddToFile()
 readFromFile()
-
 
 
