@@ -1,13 +1,15 @@
 import pandas as pd
 from pathlib import Path
 import re
-import argparse
 import sys
+import matplotlib.pyplot as plt
+import random
 import json
 import random
-import matplotlib.pyplot as plt
+from random import sample
 
-# Arvins Function that recommend sizes based on weight and body type
+global globstr 
+globstr = "("
 def recommend_sizes():
     while True:
         try:
@@ -34,12 +36,12 @@ def recommend_sizes():
         except ValueError as e:
             print(f'Error: {e}')
             continue
+recommend_sizes()
 
 # Arvins Function that recomends what clothign type you should be looking for based on your heigth in inches 
 def height_suggestions():
     """
     Suggests clothing styles, sizes, and accessories based on the user's height.
-
     Returns:
         str: A suggestion for clothing styles, sizes, and accessories based on height.
     """
@@ -48,7 +50,7 @@ def height_suggestions():
             height = int(input("Enter your height in inches: "))
             if height <= 0:
                 raise ValueError("Height must be a positive integer.")
-            
+
             suggestion = ""
             if height < 60:
                 suggestion = "Petite sizes and shorter hemlines may be more flattering. Consider small accessories like dainty jewelry."
@@ -64,7 +66,8 @@ def height_suggestions():
             return suggestion
         except ValueError as e:
             print(f'Error: {e}')
-
+            
+print(height_suggestions())
 
 #function takes in data & tells user the weather 
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
@@ -87,7 +90,8 @@ def date_weather(filepath):
         Returns:
             string of the weather correpsonding to the date in the csv file
     """
-    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024: ")
+    global globstr
+    user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024 ")
     try:
         date_pattern = r"(?P<month>\d{1})(?P<slash1>\/)(?P<day>\d{1,2})(?P<slash2>\/)(?P<year>\d{4})"
         match = re.search(date_pattern,user_input)
@@ -107,6 +111,7 @@ def date_weather(filepath):
     df = pd.read_csv(filepath) #loads the dataframe
     
     df_date = df.loc[df["Date"]==user_input] #filters just the row of data where the user_input = date
+    globstr += user_input + ", "
     if len(df_date) > 0:
         weather = df_date.iloc[0]["Weather"]
         return weather
@@ -118,9 +123,19 @@ def date_weather(filepath):
 # addd doc string
 def weather_filter(filepath):
     """
+    Groups the occurrences of the weather for hot, warm, cold, cool and 
+    windy and graphs a bar plot to show the number of occurreces for each weather 
+    type.
 
-    
-    
+    Args:
+        string file path to the csv file 
+
+    Side effects:
+        Creates a bar graph that shows the occurrences of each weather type
+
+    Returns:
+        Returns a new data frame that shows that counts the number of occurrences 
+        of each weather type
     
     """
 
@@ -134,159 +149,226 @@ def weather_filter(filepath):
     plt.show()
     return df_counts
 
-   
-
-def parse_args():
-    """
-        Parses command-line arguments Smart Outfit Planner.
-
-    This function uses ArgumentParser to parse command-line arguments \
-        provided by the user.
-    The arguments include:
-    name: User's name (required)
-    age: User's age (optional, must be a positive integer)
-    Date: Date conditions (optional)
-    occasion: Occasion for the outfit (optional)
-
-    Returns:
-        dict: A dictionary containing the parsed arguments.
-            name: User's name (str)
-            age: User's age (int)
-            date: The date  (str or None)
-            occasion: Occasion for the outfit (str or None)
-
-    Raises:
-        ValueError: If required arguments are missing or if age is \
-            not a positive integer.
-    """
-    parser = argparse.ArgumentParser(description="Smart outfit planner")
-    
-    # The command line arguments 
-    # User will enter name, age(int), date, occasion
-    parser.add_argument("name",type = str, help = "The name of the user")
-    parser.add_argument("age",type = int, help = "The age of the user")
-    parser.add_argument("date",type = str, help = "The date")
-    parser.add_argument("occasion",type = str, help = "Occasion for the outfit")
-    
-    if not args.name:
-        raise ValueError('Name is required.')
-    
-    if args.age is not None and args.age <= 0:
-        raise ValueError('Age must be a positive integer.')
-    
-    return {
-        #'name': args.name,
-        #'age': args.age,
-        'date': args.date,
-        #'occasion': args.occasion
-    }
-    
-if __name__ == "__main__":
-    args = parse_args(sys.argv[1:])
-
-
-#Arvin here is my testing with the arg parse, fix yours and delete
-AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", #dictionary needed for random accessories
-                   4: "Loop Earings", 5: "Apple Watch"}
-
-
-"""
-def parse_args():
-    parser = argparse.ArgumentParser(description="Smart outfit planner")
-
-    parser.add_argument("-accessory", type=int, default = 0) #argument parser -accessory is need to be optional and not positional
-    args = parser.parse_args()
-    return args
-    
-
-    
-
-    
-    # if args.num_accessories is not None and args.num_accessories > 5:
-    #     raise ValueError('You cant have more than five accessories')
-    
-    #return {
-
-        #'accessory' : args.accessory
-    #}
-    
-if __name__ == "__main__":
-    args = parse_args()"""
-
-
-class Outfit():
-    """outfit class
-    """
-    #outfit class to be full developed later with clothing items/outfits
-    #needs to add sections of clothing in here
-    
-    
-    def __init__(self):
-        """this function initializes the accessories list
-        """
-        self.accessories = [] #list creation for accessories
-    
-
-    def addAccessory(self, accessorynum = 0): #default accessories on an outfit is 0
-        """Adds string "None" to accessory list in this instance of the 
-        class. If the calling function has a second parameter that parameter
-        is added to the accessory list instead of "None" as the default
-        
-
-        Args:
-            accessory (str, optional): A string to be added to the list of 
-            accessories in this instance of the class. Defaults to "jewlery".
-        """
-        for i in range(accessorynum): #the user enters a number in the command line anywhere from 0 - 5 
-            self.accessories.append(AccessoriesDict[random.randint(1, 5)]) 
-        if accessorynum == 0: #if user never puts in a value the defualt is 0 but if they put 0 in still works the same
-            self.accessories.append("None") #no ccessories paired with the outfit so accesories is none
-            
-#testing  
-myoutfit = Outfit() #outfit is not paired to outfit class
-myoutfit.addAccessory(args.accessory) #calls the function
-print(myoutfit.accessories) #prints the function
-
-
-
-
+#print(weather_filter("WeatherDataSet.csv"))
 
 # Asa Agyemangs function for outfit suggetsions based on weather type
 def suggest_outfit_based_on_weather (weather):
-        with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
-            clothing_data = json.load(weather_for_clothing_file)
-        if weather not in clothing_data:
-            raise ValueError(" No outfits can be created for this type of weather! ")
-        # list of randomized outfits
-        outfit_suggestions_from_weather = []
-        for i in range(3):
-            #randomized items from (shirt, pants, shoes) to create outfit
-            shirt = random.choice(clothing_data[weather]["shirts"])
-            pants = random.choice(clothing_data[weather]["pants"])
-            shoes = random.choice(clothing_data[weather]["shoes"])
-            # custom dict for the 3 outfit suggestions
-            outfit = {
-                "Shirt": shirt,
-                "Pants": pants,
-                "Shoes": shoes
-            }
-            outfit_suggestions_from_weather.append(outfit)
-        return (outfit_suggestions_from_weather) 
+    '''
+    Suggest a set of outfits based on the weather of a specific day 
+    
+    Takes the weather condition from the function above as input and suggest three 
+    outfits based on clothing data from ('weathertoclothing.json') file which 
+    is selected randomly
+    
+    Arguments : weather (str) A string version of weather condition 
+    
+    Returns: list[dict]: A list of dicts where each represents component of an outfit 
+    
+    Rasies: ValueError: If weather condiiton is not found in the json file then 
+    no outfit will be created
+    '''
+    global globstr
+    with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
+         clothing_data = json.load(weather_for_clothing_file)
+    if weather not in clothing_data:
+        raise ValueError(" No outfits can be created for this type of weather! ")
+    # list of randomized outfits
+    outfit_suggestions_from_weather = []
+    for i in range(3):
+        #randomized items from (shirt, pants, shoes) to create outfit
+        shirt = random.choice(clothing_data[weather]["shirts"])
+        pants = random.choice(clothing_data[weather]["pants"])
+        shoes = random.choice(clothing_data[weather]["shoes"])
+        # custom dict for the 3 outfit suggestions
+        outfit = {
+            "Shirt": shirt,
+            "Pants": pants,
+            "Shoes": shoes
+         }
+        globstr += f'Outfit {i + 1}: '
+        globstr += f'Shirt:{shirt} '
+        globstr += f'Pants:{pants} '
+        globstr += f'Shoes:{shoes}, '
+        outfit_suggestions_from_weather.append(outfit)
+    return (outfit_suggestions_from_weather) 
+    
+    
+weather = date_weather("WeatherDataSet.csv")
+print(weather)
+#print(date_weather("WeatherDataSet.csv"))
+print(weather_filter("WeatherDataSet.csv"))
 
-try:
-    # Get weather for the given date
-    weather = date_weather("WeatherDataSet.csv")
-    print("Weather:", weather)
-
-    # Get outfit suggestions based on the weather
-    outfit_suggestions = suggest_outfit_based_on_weather(weather)
-    print("Suggested outfits:")
-    for outfit in outfit_suggestions:
-        print(outfit)
-except ValueError as e:
-    print("Error:", e)
+if weather:
+    try:
+        outfit_suggestions = suggest_outfit_based_on_weather(weather)
+        print("Outfit suggestions based on weather:")
+        for outfit in outfit_suggestions:
+            print(outfit)
+    except ValueError as problem:
+        print(f"Error suggesting outfits: {problem}")
 
 
+else:
+    print("Weather data unavailable, skipping outfit suggestions.")
 
+# Dictionary for random accessory selection
+AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", 4: 
+    "Loop Earrings", 5: "Apple Watch"}
+
+def addAccessory(accessorynum=0):
+    """This function asks the users if they would like accessories to pair with
+    their suggested outfits. The default is 0 which means no accessories are 
+    added to the suggested outfit, this means the user could skip input or enter
+    0 and the default would be returned. The user could enter any number from 
+    1-5, which would result in that number of accessoried being added to their
+    outfit, and is randomly ordered and assigned making this function use
+    optional parameters.
+
+    Args:
+        accessorynum (int, optional): number of accessories to be added to the 
+        suggested outfits which can range from 1-5 or even 0. Defaults to 0.
+
+    Returns:
+        list: returns a list of accessories to be paired with outfits
+    """
+    global globstr
+    accessories = []
+    if accessorynum == "" or int(accessorynum) == 0:
+        accessories.append("No accessories added")
+    else:
+        list = [1,2,3,4,5]
+        nums = sample(list, int(accessorynum))
+        for num in nums:
+            accessories.append(AccessoriesDict[num])
+    
+    globstr += 'Accesories: '
+    for accessory in accessories:
+        globstr += accessory + ' '
+    globstr += ')'
+    return accessories
+
+accessorieslist = addAccessory(input("Enter how many accessories you want added to your outfit 1-5, or enter 0 or nothing if you dont want accessories: "))
+print(accessorieslist)
+
+def clothing_store_suggestions ():
+    ''' 
+    Suggets clothing stores based on the users style prefernces 
+    
+    This function will prompt the user to select a style prefernce from a set of
+    valid choices then based on what the user chooses a list of stores will return
+    if its found they associate with the set style (also it will be orgnized by 
+    how pricy it is in terms of dollar signs)
+    
+    Arguments : No arguments but interacts with the user through input prompts 
+    Returns: Prints stores orgnizaed by least to most expensive in console 
+    Raises: Value Error If user selects an invlaid style preferance 
+    
+    
+    '''
+    
+    stores_for_styles = {
+        "Preppy" :[("Zara", "$" ),("Express" ,"$$" )],
+        "Sophisitcated" :[("Ralph Lauren" ,"$$$" ),("White House Black Label" ,"$$$" )],
+        "Comfy" :[("Uniqlo" ,"$" ),("My Comfort Online" , "$$")],
+        "Vintage" :[( "Goodwill "," $" ),(" Buffulo Exchange" ,"$ " )],
+        "Y2K" :[( " Hot Topic "," $" ),(" Dolls Kill " ,"$ " )],
+        "Trendy" :[( "H&M "," $" ),("Urban Outfitters " ,"$$ " )], 
+        "Indescribable" :[( "H&M "," $" ),("Urban Outfitters " ,"$$ " ), 
+        ( " Hot Topic "," $" ),(" Dolls Kill " ,"$ " ), ("Ralph Lauren" ,"$$$" ),("White House Black Label" ,"$$$" ),                   
+        ("Zara", "$" ),("Express" ,"$$" ) ],  
+    }
+    
+    
+    valid_style_choices = set(stores_for_styles.keys())
+    style_preference = input("What's your style preference? (Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy,Indescribable):").title()
+    
+    if style_preference not in valid_style_choices:
+        print("Uh Uh Uh! Please choose from Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy, Indescribable ")
+        return
+        
+    stores = stores_for_styles[style_preference]
+    store_suggestions= [f"{store_name} {cost_indicator}" for store_name, cost_indicator in stores]
+    
+    store_suggestions.sort(key=lambda s: s.count('$'))
+    
+    print(f"Here is your personalized store selection based on your {style_preference} style: ")
+    for suggestion in store_suggestions: 
+        print (suggestion)
+    
+    print ("Thank you so much for using BRAH FIX YOUR FIT! Have a nice day and see you next time! ")
+    
+clothing_store_suggestions ()
+
+
+
+
+
+
+
+def checkAddToFile():
+    """This function asks the user if they would like to save their outfit to 
+    outfit logs (which is a different file), if the user enters "yes", then the
+    string containing date and outfit make up will be appended to the different
+    file. If the user enters "no" or anything else, the date and outfit make up are not saved to
+    a different file.
+    """
+    check = input("Would you like to save this outfit to outfit logs? Enter yes if so, enter no or anything else if not ")
+    if check == 'yes':
+        print("Ok, saving outfit to file.")
+        file1 = open("Saved.txt", "a")
+        #appends new items to a file
+        file1.writelines(globstr + "\n")
+        #writes new lines to the file which contains the glob str which contains the date, outfits, accesories and adds a new line
+    else:
+        print("Ok, not saving outfit to file.")
+  
+
+def readFromFile():
+    """This function asks the user if they would like to see an outfit from a 
+    past date, if the user enters "yes" the user then has to enter the date
+    they want to choose an outfit from. The function then reads the file where
+    the outfits are stored and uses sequence unpacking to breakdown the
+    information. The user is then asked which out of the three outfits saved
+    they would like to see, and that outfit and its accessories are returned.
+    If the answers anything other than yes, the program essentially ends.
+    If the user enters a date where no outfit is saved, program also ends
+    """
+    want2Read = input("Would you like to see an outfit from a past date? Enter yes if so, enter no or anything else if not: ")
+    if want2Read != 'yes':
+        #program ends
+        print('ok thanks for using our program ;(')
+        return
+    date2Read = input("What date would you like to read from: ")
+    #reads each line from file
+    with open('Saved.txt', 'r') as file:
+    # Iterates over each line in the file
+        for line in file:
+            # Processes each line here
+            squp = tuple(map(str, line.split(', ')))
+            try:
+                date, o1, o2, o3, accessories = squp # sequence unpacking
+                if(date == "(" + date2Read):
+                    #asks what outift they want to see
+                    outfitNum = input("which outfit would you like to see? (Enter a number 1-3): ")
+                    if outfitNum == '1':
+                        print(o1)
+                        print(accessories)
+                        return
+                    elif outfitNum == '2':
+                        print(o2)
+                        print(accessories)
+                        return
+                    elif outfitNum == '3':
+                        print(o3)
+                        print(accessories)
+                        return
+            except ValueError:
+                continue
+            print("invalid input")
+            return
+        print("No such date found in the file.")
+
+checkAddToFile()
+readFromFile()
 
 

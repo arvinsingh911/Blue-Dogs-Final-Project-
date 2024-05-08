@@ -8,32 +8,10 @@ import matplotlib.pyplot as plt
 import random
 import json
 import random
+from random import sample
 
-# Dictionary for random accessory selection
-AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", 4: 
-    "Loop Earrings", 5: "Apple Watch"}
-
-stores_for_styles = {
-        "Preppy" :[("Zara", "$" ),("Express" ,"$$" )],
-        "Sophisitcated" :[("Ralph Lauren" ,"$$$" ),("White House Black Label" ,"$$$" )],
-        "Comfy" :[("Uniqlo" ,"$" ),("My Comfort Online" , "$$")],
-        "Vintage" :[( "Goodwill "," $" ),(" Buffulo Exchange" ,"$ " )],
-        "Y2K" :[( " Hot Topic "," $" ),(" Dolls Kill " ,"$ " )],
-        "Trendy" :[( "H&M "," $" ),("Urban Outfitters " ,"$$ " )], 
-        "Indescribable" :[( "H&M "," $" ),("Urban Outfitters " ,"$$ " ), 
-        ( " Hot Topic "," $" ),(" Dolls Kill " ,"$ " ), ("Ralph Lauren" ,"$$$" ),("White House Black Label" ,"$$$" ),                   
-        ("Zara", "$" ),("Express" ,"$$" ) ],  
-    }
-
-def addAccessory(accessorynum=0):
-    accessories = []
-    if accessorynum == "" or int(accessorynum) == 0:
-        accessories.append("No accessories added")
-    else:
-        for i in range(int(accessorynum)):
-            accessories.append(AccessoriesDict[random.randint(1, 5)])
-    return accessories
-
+global globstr 
+globstr = "("
 
 df_filepath = Path(__file__).parent / "WeatherDataSet.csv"
 
@@ -59,7 +37,7 @@ def date_weather(filepath):
         Returns:
             string of the weather correpsonding to the date in the csv file
     """
-    #add doc string for the function 
+    global globstr
     user_input = input("Input a date from April 2024 as M/D/YYYY, ie. 4/1/2024: ")
     try:
         date_pattern = r"(?P<month>\d{1})(?P<slash1>\/)(?P<day>\d{1,2})(?P<slash2>\/)(?P<year>\d{4})"
@@ -81,6 +59,7 @@ def date_weather(filepath):
     #date_column = df.loc[:"Date"] #acesses the data in the date column
     
     df_date = df.loc[df["Date"]==user_input] #filers just the row of data where the user_input = date
+    globstr += user_input + ", "
     if len(df_date) > 0:
         weather = df_date.iloc[0]["Weather"]
         return weather
@@ -119,6 +98,7 @@ def recommend_sizes():
 
 
 def suggest_outfit_based_on_weather(weather_data):
+    global globstr
     with open("weathertoclothing.json", "r", encoding="utf-8") as weather_for_clothing_file:
         clothing_data = json.load(weather_for_clothing_file)
     if weather_data in clothing_data:
@@ -127,6 +107,7 @@ def suggest_outfit_based_on_weather(weather_data):
         raise ValueError(" No outfits can be created for this type of weather! ")
     # list of randomized outfits
     outfit_suggestions_from_weather = []
+    
     for i in range(3):
         #randomized items from (shirt, pants, shoes) to create outfit
         shirt = random.choice(weather_clothing["shirts"])
@@ -138,29 +119,14 @@ def suggest_outfit_based_on_weather(weather_data):
             "Pants": pants,
             "Shoes": shoes
         }
+        globstr += f'Outfit {i + 1}: '
+        globstr += f'Shirt:{shirt} '
+        globstr += f'Pants:{pants} '
+        globstr += f'Shoes:{shoes}, '
+        
         outfit_suggestions_from_weather.append(outfit)
-    return outfit_suggestions_from_weather
 
-def clothing_store_suggestions ():
-    valid_style_choices = set(stores_for_styles.keys())
-    style_preference = input("What's your style preference? (Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy,Indescribable):").title()
-    
-    if style_preference not in valid_style_choices:
-        print("Uh Uh Uh! Please choose from Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy, Indescribable ")
-        return
-        
-    stores = stores_for_styles[style_preference]
-    store_suggestions= [f"{store_name} {cost_indicator}" for store_name, cost_indicator in stores]
-    
-    store_suggestions.sort(key=lambda s: s.count('$'))
-    
-    print(f"Here is your personalized store selection based on your {style_preference} style: ")
-    for suggestion in store_suggestions: 
-        print (suggestion)
-    
-    print ("Thank you so much for using BRAH FIX YOUR FIT! Have a nice day and see you next time! ")
-        
-# add Asa's fucntion & the try except
+    return outfit_suggestions_from_weather
 
 
 
@@ -171,6 +137,14 @@ print(weather)
 #print(date_weather("WeatherDataSet.csv"))
 print(weather_filter("WeatherDataSet.csv"))
 
+#  weather for the given date
+# try:
+#     weather = date_weather("WeatherDataSet.csv")
+# except ValueError as problem:
+#     print(f"Error getting weather: {problem}")
+#     weather = None
+
+# If weather works then suggest outfits
 if weather:
     try:
         outfit_suggestions = suggest_outfit_based_on_weather(weather)
@@ -179,8 +153,6 @@ if weather:
             print(outfit)
     except ValueError as problem:
         print(f"Error suggesting outfits: {problem}")
-
-
 else:
     print("Weather data unavailable, skipping outfit suggestions.")
 
@@ -190,16 +162,103 @@ AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", 4:
     "Loop Earrings", 5: "Apple Watch"}
 
 def addAccessory(accessorynum=0):
+    """This function asks the users if they would like accessories to pair with
+    their suggested outfits. The default is 0 which means no accessories are 
+    added to the suggested outfit, this means the user could skip input or enter
+    0 and the default would be returned. The user could enter any number from 
+    1-5, which would result in that number of accessoried being added to their
+    outfit, and is randomly ordered and assigned making this function use
+    optional parameters.
+
+    Args:
+        accessorynum (int, optional): number of accessories to be added to the 
+        suggested outfits which can range from 1-5 or even 0. Defaults to 0.
+
+    Returns:
+        list: returns a list of accessories to be paired with outfits
+    """
+    global globstr
     accessories = []
+    #list creation
     if accessorynum == "" or int(accessorynum) == 0:
         accessories.append("No accessories added")
+        #default + condition where user skips or enters 0
     else:
-        for i in range(int(accessorynum)):
-            accessories.append(AccessoriesDict[random.randint(1, 5)])
+        list = [1,2,3,4,5]
+        nums = sample(list, int(accessorynum))
+        for num in nums:
+            accessories.append(AccessoriesDict[num])
+        #accesses dict pull random accessories based on input
+    
+    globstr += 'Accesories: '
+    for accessory in accessories:
+        globstr += accessory + ' '
+    globstr += ')'
     return accessories
 
-
-accessorieslist = addAccessory(input("Enter how many accessories you want added to your outfit 1-5, or enter 0 or nothing if you dont want accessories"))
+accessorieslist = addAccessory(input("Enter how many accessories you want added to your outfit 1-5, or enter 0 or nothing if you dont want accessories: "))
 print(accessorieslist)
 
-clothing_store_suggestions ()
+def checkAddToFile():
+    """This function asks the user if they would like to save their outfit to 
+    outfit logs (which is a different file), if the user enters "yes", then the
+    string containing date and outfit make up will be appended to the different
+    file. If the user enters "no" or anything else, the date and outfit make up are not saved to
+    a different file.
+    """
+    check = input("Would you like to save this outfit to outfit logs? Enter yes if so, enter no or anything else if not ")
+    if check == 'yes':
+        print("Ok, saving outfit to file.")
+        file1 = open("Saved.txt", "a")
+        #appends new items to a file
+        file1.writelines(globstr + "\n")
+        #writes new lines to the file which contains the glob str which contains the date, outfits, accesories and adds a new line
+    else:
+        print("Ok, not saving outfit to file.")
+  
+
+def readFromFile():
+    """This function asks the user if they would like to see an outfit from a 
+    past date, if the user enters "yes" the user then has to enter the date
+    they want to choose an outfit from. The function then reads the file where
+    the outfits are stored and uses sequence unpacking to breakdown the
+    information. The user is then asked which out of the three outfits saved
+    they would like to see, and that outfit and its accessories are returned.
+    If the answers anything other than yes, the program essentially ends.
+    If the user enters a date where no outfit is saved, program also ends
+    """
+    want2Read = input("Would you like to see an outfit from a past date? Enter yes if so, enter no or anything else if not: ")
+    if want2Read != 'yes':
+        #program ends
+        print('ok ;(')
+        return
+    date2Read = input("What date would you like to read from: ")
+    #reads each line from file
+    with open('Saved.txt', 'r') as file:
+    # Iterates over each line in the file
+        for line in file:
+            # Processes each line here
+            squp = tuple(map(str, line.split(', ')))
+            date, o1, o2, o3, accessories = squp # sequence unpacking
+            if(date == "(" + date2Read):
+                #asks what outift they want to see
+                outfitNum = input("which outfit would you like to see? (Enter a number 1-3): ")
+                if outfitNum == '1':
+                    print(o1)
+                    print(accessories)
+                    return
+                elif outfitNum == '2':
+                    print(o2)
+                    print(accessories)
+                    return
+                elif outfitNum == '3':
+                    print(o3)
+                    print(accessories)
+                    return
+
+                print("invalid input")
+                return
+        print("No such date found in the file.")
+
+checkAddToFile()
+readFromFile()
