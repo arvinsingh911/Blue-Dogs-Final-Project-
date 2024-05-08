@@ -177,9 +177,10 @@ if weather:
 else:
     print("Weather data unavailable, skipping outfit suggestions.")
 
+# Dictionary for random accessory selection
+AccessoriesDict = {1: "Sunglasses", 2: "Chain", 3: "Diamond Ring", 4: 
+    "Loop Earrings", 5: "Apple Watch"}
 
-
-#imported from demo and testing file, 
 def addAccessory(accessorynum=0):
     """This function asks the users if they would like accessories to pair with
     their suggested outfits. The default is 0 which means no accessories are 
@@ -198,16 +199,13 @@ def addAccessory(accessorynum=0):
     """
     global globstr
     accessories = []
-    #list creation
     if accessorynum == "" or int(accessorynum) == 0:
         accessories.append("No accessories added")
-        #default + condition where user skips or enters 0
     else:
         list = [1,2,3,4,5]
         nums = sample(list, int(accessorynum))
         for num in nums:
-            accessories.append(accessories[num])
-        #accesses dict pull random accessories based on input
+            accessories.append(AccessoriesDict[num])
     
     globstr += 'Accesories: '
     for accessory in accessories:
@@ -217,7 +215,6 @@ def addAccessory(accessorynum=0):
 
 accessorieslist = addAccessory(input("Enter how many accessories you want added to your outfit 1-5, or enter 0 or nothing if you dont want accessories: "))
 print(accessorieslist)
-
 
 def clothing_store_suggestions ():
     ''' 

@@ -9,3 +9,4 @@
 (4/10/2024, Outfit 1: Shirt:Oversized Shirt Pants:Jeggings Shoes:Oxfords, Outfit 2: Shirt:Crew-neck Sweater Pants:Pleated Trousers Shoes:Loafers, Outfit 3: Shirt:Rugby Shirt Pants:High-waisted Pants Shoes:Platform Sneakers, Accesories: No accessories added )
 (4/5/2024, Outfit 1: Shirt:Long-sleeve Tee Pants:Leggings Shoes:Rain Boots, Outfit 2: Shirt:Denim Shirt Pants:Cargo Pants Shoes:Ankle Boots, Outfit 3: Shirt:Sweatshirt Pants:Joggers Shoes:Combat Boots, Accesories: No accessories added )
 (4/2/2024, Outfit 1: Shirt:Flannel Shirt Pants:Wide-leg Pants Shoes:Hiking Boots, Outfit 2: Shirt:Crew-neck Sweater Pants:Wide-leg Pants Shoes:Boots, Outfit 3: Shirt:Crew-neck Sweater Pants:Wide-leg Pants Shoes:Boots, Accesories: No accessories added )
+(Accesories: Sunglasses Loop Earrings )
