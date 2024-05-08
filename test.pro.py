@@ -26,3 +26,33 @@ def recommend_sizes():
             continue
 
 recommend_sizes()
+
+def height_suggestions():
+    """
+    Suggests clothing styles, sizes, and accessories based on the user's height.
+    Returns:
+        str: A suggestion for clothing styles, sizes, and accessories based on height.
+    """
+    while True:
+        try:
+            height = int(input("Enter your height in inches: "))
+            if height <= 0:
+                raise ValueError("Height must be a positive integer.")
+
+            suggestion = ""
+            if height < 60:
+                suggestion = "Petite sizes and shorter hemlines may be more flattering. Consider small accessories like dainty jewelry."
+            elif 60 <= height < 65:
+                suggestion = "Standard sizes and regular hemlines are likely suitable. Accessories of moderate size and length are versatile."
+            elif 65 <= height < 70:
+                suggestion = "Standard sizes and regular hemlines are likely suitable. Accessories of moderate size and length are versatile. For bottoms, consider petite or short lengths."
+            elif 70 <= height < 75:
+                suggestion = "Tall sizes and longer hemlines may provide a better fit. Bold accessories and statement pieces can complement your height."
+            elif height >= 75:
+                suggestion = "Tall sizes and longer hemlines may provide a better fit. Bold accessories and statement pieces can complement your height. For bottoms, consider tall lengths."
+
+            return suggestion
+        except ValueError as e:
+            print(f'Error: {e}')
+            
+print(height_suggestions())
