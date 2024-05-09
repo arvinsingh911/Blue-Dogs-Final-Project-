@@ -11,6 +11,17 @@ from random import sample
 global globstr 
 globstr = "("
 def recommend_sizes():
+    """
+    Recommends clothing sizes based on user's weight and body type. This function 
+    prompts the user to enter their weight in pounds and their body type 
+    (Slim/Average/Muscular). It then calculates and suggests the appropriate 
+    clothing sizes (top, pants, and shoes) based on the input.
+    
+    Raises:
+        ValueError: If weight is not a positive number or body type is not one 
+        of 'Slim', 'Average', or 'Muscular'.
+    
+    """
     while True:
         try:
             weight = int(input('Enter your weight (in pounds): '))
@@ -42,8 +53,12 @@ recommend_sizes()
 def height_suggestions():
     """
     Suggests clothing styles, sizes, and accessories based on the user's height.
+    
     Returns:
         str: A suggestion for clothing styles, sizes, and accessories based on height.
+        
+    Raises:
+        ValueError: If number inputted is negative
     """
     while True:
         try:
@@ -280,7 +295,7 @@ def clothing_store_suggestions ():
     
     
     valid_style_choices = set(stores_for_styles.keys())
-    style_preference = input("What's your style preference? (Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy,Indescribable):").title()
+    style_preference = input("What's your style preference? (Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy,Indescribable): ").title()
     
     if style_preference not in valid_style_choices:
         print("Uh Uh Uh! Please choose from Preppy, Sophisticated, Comfy, Vintage, Y2K, Trendy, Indescribable ")
@@ -345,28 +360,27 @@ def readFromFile():
         for line in file:
             # Processes each line here
             squp = tuple(map(str, line.split(', ')))
-            try:
-                date, o1, o2, o3, accessories = squp # sequence unpacking
-                if(date == "(" + date2Read):
-                    #asks what outift they want to see
-                    outfitNum = input("which outfit would you like to see? (Enter a number 1-3): ")
-                    if outfitNum == '1':
-                        print(o1)
-                        print(accessories)
-                        return
-                    elif outfitNum == '2':
-                        print(o2)
-                        print(accessories)
-                        return
-                    elif outfitNum == '3':
-                        print(o3)
-                        print(accessories)
-                        return
-            except ValueError:
-                continue
-            print("invalid input")
-            return
+            date, o1, o2, o3, accessories = squp # sequence unpacking
+            if(date == "(" + date2Read):
+                #asks what outift they want to see
+                outfitNum = input("which outfit would you like to see? (Enter a number 1-3): ")
+                if outfitNum == '1':
+                    print(o1)
+                    print(accessories)
+                    return
+                elif outfitNum == '2':
+                    print(o2)
+                    print(accessories)
+                    return
+                elif outfitNum == '3':
+                    print(o3)
+                    print(accessories)
+                    return
+
+                print("invalid input")
+                return
         print("No such date found in the file.")
+
 
 checkAddToFile()
 readFromFile()

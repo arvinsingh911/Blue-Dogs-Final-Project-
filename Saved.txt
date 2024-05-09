@@ -1,29 +1,6 @@
 (4/20/2024, Outfit 1: Shirt:Crop Top Pants:Swim Trunks Shoes:Flip Flops, Outfit 2: Shirt:Striped T-shirt Pants:Leggings Shoes:Slippers, Outfit 3: Shirt:Tank Top Pants:Leggings Shoes:Sandals, Accesories: Apple Watch Chain )
 (4/5/2024, Outfit 1: Shirt:Denim Shirt Pants:Jeans Shoes:Combat Boots, Outfit 2: Shirt:Long-sleeve Tee Pants:Leggings Shoes:Rain Boots, Outfit 3: Shirt:Crew-neck Sweater Pants:Jeans Shoes:Rain Boots, Accesories: Apple Watch )
 (4/2/2024, Outfit 1: Shirt:V-neck Sweater Pants:Sweatpants Shoes:Hiking Boots, Outfit 2: Shirt:Hoodie Pants:Sweatpants Shoes:Boots, Outfit 3: Shirt:Flannel Shirt Pants:Wide-leg Pants Shoes:Platform Sneakers, Accesories: Apple Watch Loop Earrings )
-(4/5/2024, Outfit 1: Shirt:Crew-neck Sweater Pants:Cargo Pants Shoes:Athletic Shoes, Outfit 2: Shirt:Long-sleeve Tee Pants:Leggings Shoes:Combat Boots, Outfit 3: Shirt:Hoodie Pants:Cargo Pants Shoes:Combat Boots, Accesories: Loop Earrings Sunglasses )
-(4/5/2024, Outfit 1: Shirt:Denim Shirt Pants:Joggers Shoes:Ankle Boots, Outfit 2: Shirt:Denim Shirt Pants:Jeans Shoes:Ankle Boots, Outfit 3: Shirt:Denim Shirt Pants:Joggers Shoes:Ankle Boots, Accesories: No accessories added )
-(4/5/2024, Outfit 1: Shirt:Hoodie Pants:Joggers Shoes:Rain Boots, Outfit 2: Shirt:Sweatshirt Pants:Leggings Shoes:Combat Boots, Outfit 3: Shirt:Denim Shirt Pants:Cargo Pants Shoes:Rain Boots, Accesories: Apple Watch Chain )
 (4/1/2024, Outfit 1: Shirt:Hoodie Pants:Corduroy Pants Shoes:Hiking Boots, Outfit 2: Shirt:Flannel Shirt Pants:Sweatpants Shoes:Athletic Shoes, Outfit 3: Shirt:Flannel Shirt Pants:Sweatpants Shoes:Boots, Accesories: No accessories added )
 (4/7/2024, Outfit 1: Shirt:Sweatshirt Pants:Leggings Shoes:Combat Boots, Outfit 2: Shirt:Crew-neck Sweater Pants:Leggings Shoes:Athletic Shoes, Outfit 3: Shirt:Hoodie Pants:Cargo Pants Shoes:Athletic Shoes, Accesories: No accessories added )
-(4/10/2024, Outfit 1: Shirt:Oversized Shirt Pants:Jeggings Shoes:Oxfords, Outfit 2: Shirt:Crew-neck Sweater Pants:Pleated Trousers Shoes:Loafers, Outfit 3: Shirt:Rugby Shirt Pants:High-waisted Pants Shoes:Platform Sneakers, Accesories: No accessories added )
-(4/5/2024, Outfit 1: Shirt:Long-sleeve Tee Pants:Leggings Shoes:Rain Boots, Outfit 2: Shirt:Denim Shirt Pants:Cargo Pants Shoes:Ankle Boots, Outfit 3: Shirt:Sweatshirt Pants:Joggers Shoes:Combat Boots, Accesories: No accessories added )
-(4/2/2024, Outfit 1: Shirt:Flannel Shirt Pants:Wide-leg Pants Shoes:Hiking Boots, Outfit 2: Shirt:Crew-neck Sweater Pants:Wide-leg Pants Shoes:Boots, Outfit 3: Shirt:Crew-neck Sweater Pants:Wide-leg Pants Shoes:Boots, Accesories: No accessories added )
-<<<<<<< HEAD
-<<<<<<< HEAD
-(4/1/2024, Outfit 1: Shirt:Flannel Shirt Pants:Wide-leg Pants Shoes:Hiking Boots, Outfit 2: Shirt:Hoodie Pants:Sweatpants Shoes:Work Boots, Outfit 3: Shirt:Flannel Shirt Pants:Corduroy Pants Shoes:Platform Sneakers, Accesories: Diamond Ring Sunglasses Loop Earrings Apple Watch Chain )
-=======
-(Accesories: Sunglasses Loop Earrings )
->>>>>>> 83a373fb9034a2bba173da45747556106c17f3a3
-(Accesories: Chain Diamond Ring Apple Watch Sunglasses Loop Earrings )
-=======
-(4/2/2024, Outfit 1: Shirt:Hoodie Pants:Skirt with Fleece Stockings Shoes:Boots, Outfit 2: Shirt:Crew-neck Sweater Pants:Fleece Lined Leggings Shoes:Uggs, Outfit 3: Shirt:V-neck Sweater Pants:Sweatpants Shoes:Platform Sneakers, Accesories: Chain Sunglasses Apple Watch )
-(4/29/2024, Outfit 1: Shirt:Muscle Tank Pants:Cargo Shorts Shoes:Sandals, Outfit 2: Shirt:Striped T-shirt Pants:Shorts Shoes:Espadrilles, Outfit 3: Shirt:Muscle Tank Pants:Jean Shorts Shoes:Sandals, Accesories: No accessories added )
-(4/20/2024, Outfit 1: Shirt:Tank Top Pants:Bermuda Shorts Shoes:Sandals, Outfit 2: Shirt:Muscle Tank Pants:Leggings Shoes:Yezzy Pods, Outfit 3: Shirt:Crop Top Pants:Shorts Shoes:Yezzy Pods, Accesories: Loop Earrings Diamond Ring Chain )
->>>>>>> a19b2aeaab0b3a089d5a120df3d9c2e52e72dd5a
-(4/25/2024, Outfit 1: Shirt:Muscle Tank Pants:Bermuda Shorts Shoes:Espadrilles, Outfit 2: Shirt:Cropped T- Shirt Pants:Cropped Trousers Shoes:Yezzy Pods, Outfit 3: Shirt:Tank Top Pants:Cropped Trousers Shoes:Espadrilles, Accesories: Loop Earrings Chain Diamond Ring Sunglasses Apple Watch )
-(4/25/2024, Outfit 1: Shirt:Striped T-shirt Pants:Jean Shorts Shoes:Sandals, Outfit 2: Shirt:Muscle Tank Pants:Shorts Shoes:Athletic Shoes, Outfit 3: Shirt:Tank Top Pants:Shorts Shoes:Yezzy Pods, Accesories: Sunglasses Diamond Ring Chain Loop Earrings Apple Watch )
-(4/25/2024, Outfit 1: Shirt:Cropped T- Shirt Pants:Swim Trunks Shoes:Athletic Shoes, Outfit 2: Shirt:Graphic Tee Pants:Mini Skirt Shoes:Espadrilles, Outfit 3: Shirt:Muscle Tank Pants:Cargo Shorts Shoes:Yezzy Pods, Accesories: Apple Watch Loop Earrings Sunglasses Diamond Ring Chain )
-(4/25/2024, Outfit 1: Shirt:Halter Neck Crop Top Pants:Swim Trunks Shoes:Espadrilles, Outfit 2: Shirt:Tank Top Pants:Cargo Shorts Shoes:Flip Flops, Outfit 3: Shirt:Striped T-shirt Pants:Shorts Shoes:Athletic Shoes, Accesories: Apple Watch Chain Loop Earrings Sunglasses Diamond Ring )
-(4/1/2024, Outfit 1: Shirt:Grateful Puff Print Sweatshirt Pants:Fleece Lined Leggings Shoes:Work Boots, Outfit 2: Shirt:Essentail FEAR OF GOD Hoodie Pants:Skirt with Fleece Stockings Shoes:Work Boots, Outfit 3: Shirt:Grateful Puff Print Sweatshirt Pants:Sweatpants Shoes:Athletic Shoes, Accesories: Sunglasses Diamond Ring Loop Earrings Apple Watch Chain )
-(4/2/2024, Outfit 1: Shirt:Essentail FEAR OF GOD Hoodie Pants:Skirt with Fleece Stockings Shoes:Platform Sneakers, Outfit 2: Shirt:Flannel Shirt Pants:Corduroy Pants Shoes:Work Boots, Outfit 3: Shirt:Hoodie Pants:Fleece Lined Leggings Shoes:Work Boots, Accesories: Chain Sunglasses Loop Earrings Apple Watch Diamond Ring )
+
