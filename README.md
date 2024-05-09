@@ -12,6 +12,9 @@
 
 
 **An explanation of the purpose of each file in the repository**
+*Final Project.py
+-This is the Python file that contains the program that should be run at the command line.
+
 * WeatherDataSet.csv file
   -This file is a CSV file that is used to create a data frame for the weather in April. This CSV file will be used to get the
   corresponding weather for the date that is inputted for the date_weather function
